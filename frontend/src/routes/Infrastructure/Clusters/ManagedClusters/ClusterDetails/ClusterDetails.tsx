@@ -175,6 +175,26 @@ export default function ClusterDetailsPage({ match }: RouteComponentProps<{ id: 
         )
     }
 
+    const clusterActionGroupChildren = []
+    const addonLinks = addons.filter((addon) => addon.launchLink)
+    if (addonLinks.length > 0) {
+        clusterActionGroupChildren.push(
+        <AcmLaunchLink
+            links={addonLinks
+                ?.map((addon) => ({
+                    id: addon.launchLink?.displayText!,
+                    text: addon.launchLink?.displayText!,
+                    href: addon.launchLink?.href!,
+                }))}
+        />)
+    }
+    clusterActionGroupChildren.push(
+        <DownloadConfigurationDropdown canGetSecret={canGetSecret} />
+    )
+    clusterActionGroupChildren.push(
+        <ClusterActionDropdown cluster={cluster!} isKebab={false} />
+    )
+
     return (
         <ClusterContext.Provider
             value={{
@@ -251,17 +271,7 @@ export default function ClusterDetailsPage({ match }: RouteComponentProps<{ id: 
                         }
                         actions={
                             <AcmActionGroup>
-                                <AcmLaunchLink
-                                    links={addons
-                                        ?.filter((addon) => addon.launchLink)
-                                        ?.map((addon) => ({
-                                            id: addon.launchLink?.displayText!,
-                                            text: addon.launchLink?.displayText!,
-                                            href: addon.launchLink?.href!,
-                                        }))}
-                                />
-                                <DownloadConfigurationDropdown canGetSecret={canGetSecret} />
-                                <ClusterActionDropdown cluster={cluster!} isKebab={false} />
+                                { clusterActionGroupChildren }
                             </AcmActionGroup>
                         }
                     />
