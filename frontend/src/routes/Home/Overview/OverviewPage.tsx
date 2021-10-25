@@ -20,6 +20,7 @@ import {
     Provider,
 } from '@open-cluster-management/ui-components'
 import { ButtonVariant, PageSection } from '@patternfly/react-core'
+import { Link } from 'react-router-dom'
 import { PlusIcon } from '@patternfly/react-icons'
 import _ from 'lodash'
 import { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react'
@@ -31,6 +32,7 @@ import { useGetOverviewLazyQuery, useGetResourceQuery } from '../../../console-s
 import { ClusterManagementAddOn } from '../../../resources/cluster-management-add-on'
 import { searchClient } from '../../../search-sdk/search-client'
 import { useSearchResultCountLazyQuery, useSearchResultItemsLazyQuery } from '../../../search-sdk/search-sdk'
+import { NavigationPath } from '../../../NavigationPath'
 
 export function mapProviderFromLabel(provider: string): Provider {
     switch (provider.toLowerCase()) {
@@ -193,12 +195,11 @@ const PageActions = (props: { timestamp: string; reloading: boolean; refetch: ()
     return (
         <Fragment>
             <AcmActionGroup>
-                <AcmLaunchLink links={getLaunchLink(addons)} />
+                { addons && addons.metadata.name && (<AcmLaunchLink links={getLaunchLink(addons)} />) }
                 <AcmButton
-                    href="/multicloud/credentials"
+                    component={Link}
                     variant={ButtonVariant.link}
-                    component="a"
-                    rel="noreferrer"
+                    to={NavigationPath.addCredentials}
                     id="add-provider-connection"
                     icon={<PlusIcon />}
                     iconPosition="left"
