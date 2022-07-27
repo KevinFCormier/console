@@ -26,16 +26,18 @@ echo BACKEND_URL=$BACKEND_URL >> ./backend/.env
 FRONTEND_URL=https://localhost:3000
 echo FRONTEND_URL=$FRONTEND_URL >> ./backend/.env
 
-INSTALLATION_NAMESPACE=`oc get multiclusterhub -A -o jsonpath='{.items[0].metadata.namespace}'`
+#INSTALLATION_NAMESPACE=`oc get multiclusterhub -A -o jsonpath='{.items[0].metadata.namespace}'`
+INSTALLATION_NAMESPACE_MCE=`oc get multiclusterengine -A -o jsonpath='{.items[0].spec.targetNamespace}'`
 
-SA=$(oc get serviceaccounts -n $INSTALLATION_NAMESPACE --selector=app=console-chart,component=serviceaccount -o jsonpath='{.items[0].metadata.name}')
-SA_SECRET=$(oc get secrets -n $INSTALLATION_NAMESPACE -o json | jq -r "[.items[] | select(.metadata.annotations[\"kubernetes.io/service-account.name\"] == \"$SA\" and .type == \"kubernetes.io/service-account-token\")][0].metadata.name")
-SA_TOKEN=`oc get secret -n $INSTALLATION_NAMESPACE ${SA_SECRET} -o="jsonpath={.data.token}"`
+#SA=$(oc get serviceaccounts -n $INSTALLATION_NAMESPACE --selector=app=console-chart,component=serviceaccount -o jsonpath='{.items[0].metadata.name}')
+#SA_SECRET=$(oc get secrets -n $INSTALLATION_NAMESPACE -o json | jq -r "[.items[] | select(.metadata.annotations[\"kubernetes.io/service-account.name\"] == \"$SA\" and .type == \"kubernetes.io/service-account-token\")][0].metadata.name")
+#SA_TOKEN=`oc get secret -n $INSTALLATION_NAMESPACE ${SA_SECRET} -o="jsonpath={.data.token} | base64 -d -"`
 
-echo ${SA_TOKEN} > /tmp/tmp_SA_TOKEN
-SA_TOKEN=`cat /tmp/tmp_SA_TOKEN | base64 -d -`
-rm /tmp/tmp_SA_TOKEN
-echo TOKEN=$SA_TOKEN >> ./backend/.env
+SA_MCE=$(oc get serviceaccounts -n $INSTALLATION_NAMESPACE_MCE console-mce -o jsonpath='{.items[0].metadata.name}')
+SA_SECRET_MCE=$(oc get secrets -n $INSTALLATION_NAMESPACE_MCE -o json | jq -r "[.items[] | select(.metadata.annotations[\"kubernetes.io/service-account.name\"] == \"$SA_MCE\" and .type == \"kubernetes.io/service-account-token\")][0].metadata.name")
+SA_TOKEN_MCE=`oc get secret -n $INSTALLATION_NAMESPACE_MCE ${SA_SECRET_MCE} -o="jsonpath={.data.token}" | base64 -d -`
+
+echo TOKEN=$SA_TOKEN_MCE >> ./backend/.env
 
 REDIRECT_URIS=$(oc get OAuthClient $OAUTH2_CLIENT_ID -o json | jq -c "[.redirectURIs[], \"$OAUTH2_REDIRECT_URL\"] | unique")
 oc patch OAuthClient multicloudingress --type json -p "[{\"op\": \"add\", \"path\": \"/redirectURIs\", \"value\": ${REDIRECT_URIS}}]"
