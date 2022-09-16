@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
-import { getBackendUrl, IRequestResult, postRequest } from '../resources'
+import { getBackendUrl, IRequestResult, OCPAppResourceKind, postRequest } from '../resources'
 
 export const apiSearchUrl = '/proxy/search'
 export const searchFilterQuery =
@@ -85,7 +85,7 @@ export function queryOCPAppResources(): IRequestResult<ISearchResult> {
                     filters: [
                         {
                             property: 'kind',
-                            values: ['cronjob', 'daemonset', 'deployment', 'deploymentconfig', 'job', 'statefulset'],
+                            values: Object.values(OCPAppResourceKind),
                         },
                     ],
                 },

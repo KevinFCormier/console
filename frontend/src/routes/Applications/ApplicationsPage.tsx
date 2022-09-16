@@ -18,20 +18,19 @@ export default function ApplicationsPage() {
     const { t } = useTranslation()
 
     const { data, startPolling } = useQuery(queryRemoteArgoApps)
-    const dataOCPResources = useQuery(queryOCPAppResources).data
-    const startPollingOCPResources = useQuery(queryOCPAppResources).startPolling
+    const { data: dataOCPResources, startPolling: startPollingOCPResources } = useQuery(queryOCPAppResources)
 
     useEffect(startPolling, [startPolling])
     useEffect(startPollingOCPResources, [startPollingOCPResources])
 
-    const setDiscoveredAppilcations = useSetRecoilState(discoveredApplicationsState)
+    const setDiscoveredApplications = useSetRecoilState(discoveredApplicationsState)
     const setDiscoveredOCPAppResources = useSetRecoilState(discoveredOCPAppResourcesState)
     useEffect(() => {
-        const remoteArgoApps = data?.[0]?.data?.searchResult?.[0]?.items || []
-        setDiscoveredAppilcations(remoteArgoApps)
-        const ocpAppResources = dataOCPResources?.[0]?.data?.searchResult?.[0]?.items || []
+        const remoteArgoApps = data?.[0]?.data.searchResult[0]?.items || []
+        setDiscoveredApplications(remoteArgoApps)
+        const ocpAppResources = dataOCPResources?.[0]?.data.searchResult[0]?.items || []
         setDiscoveredOCPAppResources(ocpAppResources)
-    }, [data, dataOCPResources, setDiscoveredAppilcations, setDiscoveredOCPAppResources])
+    }, [data, dataOCPResources, setDiscoveredApplications, setDiscoveredOCPAppResources])
 
     return (
         <AcmPage

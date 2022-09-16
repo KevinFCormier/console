@@ -42,6 +42,7 @@ import {
     NamespaceApiVersion,
     NamespaceKind,
     OCPAppResource,
+    OCPAppResourceKind,
     PlacementRule,
     PlacementRuleApiVersion,
     PlacementRuleKind,
@@ -296,7 +297,7 @@ const mockArgoApplication1: ArgoApplication = {
 
 const mockOCPApplication0: OCPAppResource = {
     apiVersion: 'apps/v1',
-    kind: 'deployment',
+    kind: OCPAppResourceKind.Deployment,
     name: 'authentication-operator',
     namespace: 'authentication-operator-ns',
     label: 'app=authentication-operator',
@@ -307,7 +308,7 @@ const mockOCPApplication0: OCPAppResource = {
 
 const mockFluxApplication0: OCPAppResource = {
     apiVersion: 'apps/v1',
-    kind: 'deployment',
+    kind: OCPAppResourceKind.Deployment,
     name: 'authentication-operator',
     namespace: 'authentication-operator-ns',
     label: 'kustomize.toolkit.fluxcd.io/name=test-app;kustomize.toolkit.fluxcd.io/namespace=test-app-ns',

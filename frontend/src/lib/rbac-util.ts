@@ -7,6 +7,7 @@ import {
     getResourceGroup,
     getResourcePlural,
     IResource,
+    IResourceDefinition,
     Namespace,
     ResourceAttributes,
 } from '../resources'
@@ -63,7 +64,7 @@ export function getAuthorizedClusters(resourceAttributes: ResourceAttributes[], 
             }
 
             const adminAccessRequest = await checkAdminAccess()
-            const isAdmin = adminAccessRequest?.status?.allowed ?? false
+            const isAdmin = adminAccessRequest.status?.allowed ?? false
 
             if (isAdmin) {
                 return resolve(clusters)
@@ -113,7 +114,7 @@ type SubResource = 'join' | 'bind'
 
 export function rbacResource(
     verb: Verb,
-    resource: IResource,
+    resource: IResourceDefinition & Partial<IResource>,
     namespace?: string,
     name?: string,
     subresource?: SubResource
@@ -133,29 +134,34 @@ export function rbacResource(
     return attributes
 }
 
-export function rbacGet(resource: IResource, namespace?: string, name?: string) {
+export function rbacGet(resource: IResourceDefinition & Partial<IResource>, namespace?: string, name?: string) {
     return rbacResource('get', resource, namespace, name)
 }
 
-export function rbacPatch(resource: IResource, namespace?: string, name?: string) {
+export function rbacPatch(resource: IResourceDefinition & Partial<IResource>, namespace?: string, name?: string) {
     return rbacResource('patch', resource, namespace, name)
 }
 
-export function rbacCreate(resource: IResource, namespace?: string, name?: string, subresource?: SubResource) {
+export function rbacCreate(
+    resource: IResourceDefinition & Partial<IResource>,
+    namespace?: string,
+    name?: string,
+    subresource?: SubResource
+) {
     return rbacResource('create', resource, namespace, name, subresource)
 }
 
-export function rbacDelete(resource: IResource, namespace?: string, name?: string) {
+export function rbacDelete(resource: IResourceDefinition & Partial<IResource>, namespace?: string, name?: string) {
     return rbacResource('delete', resource, namespace, name)
 }
 
-export function rbacUpdate(resource: IResource, namespace?: string, name?: string) {
+export function rbacUpdate(resource: IResourceDefinition & Partial<IResource>, namespace?: string, name?: string) {
     return rbacResource('update', resource, namespace, name)
 }
 
 export function canUser(
     verb: Verb,
-    resource: IResource,
+    resource: IResourceDefinition & Partial<IResource>,
     namespace?: string,
     name?: string,
     _subresource?: SubResource

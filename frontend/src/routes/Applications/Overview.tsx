@@ -139,7 +139,7 @@ export function getAnnotation(resource: IResource, annotationString: string) {
     return resource.metadata?.annotations !== undefined ? resource.metadata?.annotations[annotationString] : undefined
 }
 
-function getAppNamespace(resource: IResource) {
+function getAppNamespace(resource: IApplicationResource & Pick<IResource, 'metadata'>) {
     let castType
     if (resource.apiVersion === ArgoApplicationApiVersion && resource.kind === ArgoApplicationKind) {
         castType = resource as ArgoApplication
@@ -149,7 +149,11 @@ function getAppNamespace(resource: IResource) {
     return resource.metadata?.namespace
 }
 
-export const getApplicationRepos = (resource: IResource, subscriptions: Subscription[], channels: Channel[]) => {
+export const getApplicationRepos = (
+    resource: IApplicationResource,
+    subscriptions: Subscription[],
+    channels: Channel[]
+) => {
     let castType
     if (resource.apiVersion === ApplicationApiVersion) {
         if (resource.kind === ApplicationKind) {
@@ -253,7 +257,7 @@ export default function ApplicationsOverview() {
     const [pluginModal, setPluginModal] = useState<JSX.Element>()
 
     const getTimeWindow = useCallback(
-        (app: IResource) => {
+        (app: IApplicationResource) => {
             if (!(app.apiVersion === ApplicationApiVersion && app.kind === ApplicationKind)) {
                 return ''
             }
@@ -288,7 +292,7 @@ export default function ApplicationsOverview() {
 
     // Cache cell text for sorting and searching
     const generateTransformData = useCallback(
-        (tableItem: IResource) => {
+        (tableItem: IApplicationResource & Pick<IResource, 'metadata'>) => {
             // Cluster column
             const clusterList = getClusterList(
                 tableItem,
@@ -503,7 +507,7 @@ export default function ApplicationsOverview() {
                         cluster: value.cluster,
                         resourceName,
                     },
-                } as OCPAppResource)
+                })
             )
         })
         return transformedData
@@ -548,7 +552,7 @@ export default function ApplicationsOverview() {
         [acmExtensions]
     )
 
-    const columns = useMemo<IAcmTableColumn<IApplicationResource>[]>(
+    const columns = useMemo<IAcmTableColumn<IApplicationResource & Pick<IResource, 'metadata'>>[]>(
         () => [
             {
                 header: t('Name'),
@@ -740,7 +744,7 @@ export default function ApplicationsOverview() {
                         value: `${getApiVersionResourceGroup(ApplicationApiVersion)}/${ApplicationKind}`,
                     },
                 ],
-                tableFilterFn: (selectedValues: string[], item: IApplicationResource) => {
+                tableFilterFn: (selectedValues: string[], item: IApplicationResource & Pick<IResource, 'metadata'>) => {
                     return selectedValues.some((value) => {
                         if (isOCPAppResource(item)) {
                             const isFlux = isFluxApplication(item.label)

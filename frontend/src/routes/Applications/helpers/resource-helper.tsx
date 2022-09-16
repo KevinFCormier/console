@@ -25,12 +25,8 @@ import {
     SubscriptionKind,
     ApplicationSetDefinition,
     ApplicationDefinition,
-    DeploymentKind,
-    StatefulSetKind,
-    DeploymentConfigKind,
-    JobKind,
-    CronJobKind,
-    DaemonSetKind,
+    OCPAppResource,
+    OCPAppResourceKind,
 } from '../../../resources'
 import { getSubscriptionAnnotations, isLocalSubscription } from './subscriptions'
 import { getArgoDestinationCluster } from '../ApplicationDetails/ApplicationTopology/model/topologyArgo'
@@ -42,11 +38,16 @@ const appSetPlacementStr =
 export const hostingSubAnnotationStr = 'apps.open-cluster-management.io/hosting-subscription'
 const hostingDeployableAnnotationStr = 'apps.open-cluster-management.io/hosting-deployable'
 
-export function isArgoApp(item: IResource) {
+export type IApplicationResource = IResource | OCPAppResource
+
+export function isArgoApp(item: IResourceDefinition) {
     return item.apiVersion === ArgoApplicationApiVersion && item.kind === ArgoApplicationKind
 }
 
-export function isResourceTypeOf(resource: IResource, resourceType: IResourceDefinition | IResourceDefinition[]) {
+export function isResourceTypeOf(
+    resource: IResourceDefinition,
+    resourceType: IResourceDefinition | IResourceDefinition[]
+) {
     if (Array.isArray(resourceType)) {
         let isTypeOf = false
         resourceType.forEach((rt) => {
@@ -138,7 +139,7 @@ const getSubscriptionsClusterList = (
 }
 
 export const getClusterList = (
-    resource: IResource,
+    resource: IApplicationResource & Pick<IResource, 'metadata'>,
     argoApplications: ArgoApplication[],
     placementRules: PlacementRule[],
     subscriptions: Subscription[],
@@ -146,15 +147,7 @@ export const getClusterList = (
     managedClusters: Cluster[]
 ) => {
     // managed resources using search to fetch
-    const ocpAppResourceKinds = [
-        CronJobKind,
-        DaemonSetKind,
-        DeploymentKind,
-        DeploymentConfigKind,
-        JobKind,
-        StatefulSetKind,
-    ].map((kind) => kind.toLowerCase())
-    if (ocpAppResourceKinds.includes(resource.kind)) {
+    if (resource.kind in Object.values(OCPAppResourceKind)) {
         const clusterSet = new Set<string>()
         if (resource.status.cluster) {
             clusterSet.add(resource.status.cluster)
@@ -221,7 +214,7 @@ export function getClusterCountString(
     t: TFunction,
     clusterCount: ClusterCount,
     clusterList?: string[],
-    resource?: IResource
+    resource?: IResourceDefinition
 ) {
     if (resource && isArgoApp(resource)) {
         return clusterList?.length ? clusterList[0] : t('None')
@@ -306,7 +299,7 @@ export const getMoment = (timestamp: string, locale = '') => {
     return momentObj
 }
 
-export const getAge = (item: IResource, locale: string, timestampKey: string) => {
+export const getAge = (item: IApplicationResource, locale: string, timestampKey: string) => {
     const key = timestampKey ? timestampKey : 'created'
     const createdTime = _.get(item, key)
     if (createdTime) {
@@ -429,7 +422,7 @@ export const getAppChildResources = (
 
         // Find apps sharing the same sub
         applications.forEach((item) => {
-            if (item.metadata.uid !== app.metadata?.uid && item.metadata.namespace === app.metadata?.namespace) {
+            if (item.metadata.uid !== app.metadata.uid && item.metadata.namespace === app.metadata.namespace) {
                 if (item.metadata.name && getSubscriptionsFromAnnotation(item).find((sub) => sub === sa)) {
                     siblingApps.push(item.metadata.name)
                 }

@@ -14,6 +14,7 @@ import {
     SecretDefinition,
     ClusterCuratorKind,
     ClusterStatus,
+    IResourceDefinition,
 } from '../../../../../resources'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -133,7 +134,7 @@ export function UpdateAutomationModal(props: {
 
         // Set up resources to patch and/or create
         const resources: {
-            resource: IResource
+            resource: IResourceDefinition & Partial<IResource>
             data: any
         }[] = []
 
