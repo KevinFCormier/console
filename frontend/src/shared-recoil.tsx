@@ -1,16 +1,16 @@
 /* Copyright Contributors to the Open Cluster Management project */
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { RecoilState, RecoilValue, SetterOrUpdater } from 'recoil'
+
 import { PluginContext } from './lib/PluginContext'
 import { useContext } from 'react'
-import {
-    AtomOptions,
-    ReadOnlySelectorOptions,
-    RecoilState,
-    RecoilValue,
-    RecoilValueReadOnly,
-    SetterOrUpdater,
-} from 'recoil'
 
-// const {useRecoilValue} = PluginContext.
+function useSharedRecoil() {
+    const { dataContext } = useContext(PluginContext)
+    const { recoil } = useContext(dataContext)
+
+    return recoil
+}
 
 export function useSharedAtoms() {
     const { dataContext } = useContext(PluginContext)
@@ -19,11 +19,11 @@ export function useSharedAtoms() {
     return atoms
 }
 
-function useSharedRecoil() {
+export function useSharedSelectors() {
     const { dataContext } = useContext(PluginContext)
-    const { recoil } = useContext(dataContext)
+    const { selectors } = useContext(dataContext)
 
-    return recoil
+    return selectors
 }
 
 export function useRecoilValue<T>(param: RecoilValue<T>): T {
@@ -40,21 +40,3 @@ export function useRecoilState<T>(param: RecoilState<T>): [T, SetterOrUpdater<T>
     const { useRecoilState: useSharedRecoilState } = useSharedRecoil()
     return useSharedRecoilState(param)
 }
-
-export function atom<T>(param: AtomOptions<T>): RecoilState<T> {
-    const { atom: sharedAtom } = useSharedRecoil()
-    return sharedAtom(param)
-}
-
-export function readOnlySelector<T>(param: ReadOnlySelectorOptions<T>): RecoilValueReadOnly<T> {
-    const { selector: sharedSelector } = useSharedRecoil()
-    return sharedSelector(param)
-}
-
-// function selector<T>(options: ReadWriteSelectorOptions<T>): RecoilState<T> (+1 overload)
-
-// export function selector<T>(options: ReadWriteSelectorOptions<T>): RecoilState<T>;
-// export function selector<T>(options: ReadOnlySelectorOptions<T>): RecoilValueReadOnly<T>;
-// export namespace selector {
-//  function value<T>(value: T): WrappedValue<T>;
-// }

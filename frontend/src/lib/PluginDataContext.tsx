@@ -1,7 +1,13 @@
 /* Copyright Contributors to the Open Cluster Management project */
-import { createContext, ProviderProps } from 'react'
-import * as recoil from 'recoil'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import * as atoms from '../atoms'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import * as recoil from 'recoil'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import * as selectors from '../selectors'
+
+import { ProviderProps, createContext } from 'react'
+
 // import { LoadDataUpdateContext } from './load-context-data'
 
 const { RecoilRoot } = recoil
@@ -9,30 +15,15 @@ const { RecoilRoot } = recoil
 export type PluginData = {
     recoil: typeof recoil
     atoms: typeof atoms
+    selectors: typeof selectors
     loaded: boolean
 }
 
-let loaded = false
-
-const defaultContext = { recoil, atoms, loaded }
+const defaultContext = { recoil, atoms, selectors, loaded: false }
 
 export const PluginDataContext = createContext<PluginData>(defaultContext)
 
 export const usePluginDataContextValue = () => {
-    // const [snapshot, setSnapshot] = useState<Snapshot | undefined>()
-    // const [release, setRelease] = useState<() => void>()
-    // //const getSnapshot = () => snapshot
-    // // const setSnapshotOnce = useCallback((s: string) => {
-    // //     if (!snapshot) {
-    // //         setSnapshot(s)
-    // //     }
-    // // }, [snapshot, setSnapshot])
-    // const nextSnapshot = useCallback((s: Snapshot) => {
-    //     //debugger
-    //     if (release) release()
-    //     setRelease(s.retain())
-    //     setSnapshot(s)
-    // }, [release])
     return defaultContext
 }
 
