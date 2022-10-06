@@ -18,18 +18,6 @@ import {
 } from 'react'
 import { Link, Redirect, Route, RouteComponentProps, Switch, useHistory, useLocation } from 'react-router-dom'
 import { useRecoilCallback } from 'recoil'
-import {
-    ansibleJobState,
-    applicationSetsState,
-    applicationsState,
-    argoApplicationsState,
-    channelsState,
-    placementRulesState,
-    placementsState,
-    subscriptionReportsState,
-    subscriptionsState,
-    THROTTLE_EVENTS_DELAY,
-} from '../../../atoms'
 import { RbacDropdown } from '../../../components/Rbac'
 import { useTranslation } from '../../../lib/acm-i18next'
 import { canUser, rbacPatch } from '../../../lib/rbac-util'
@@ -68,6 +56,7 @@ import { getApplication } from './ApplicationTopology/model/application'
 import { getResourceStatuses } from './ApplicationTopology/model/resourceStatuses'
 import { getTopology } from './ApplicationTopology/model/topology'
 import { getApplicationData } from './ApplicationTopology/model/utils'
+import { useSharedAtoms } from '../../../shared-recoil'
 
 export const ApplicationContext = createContext<{
     readonly actions: null | ReactNode
@@ -118,6 +107,19 @@ function searchError(completeError: ApolloError | undefined, t: TFunction) {
 export default function ApplicationDetailsPage({ match }: RouteComponentProps<{ name: string; namespace: string }>) {
     const location = useLocation()
     const { t } = useTranslation()
+    const {
+        ansibleJobState,
+        applicationSetsState,
+        applicationsState,
+        argoApplicationsState,
+        channelsState,
+        placementRulesState,
+        placementsState,
+        subscriptionReportsState,
+        subscriptionsState,
+        THROTTLE_EVENTS_DELAY,
+    } = useSharedAtoms()
+
     const [waitForApplication, setWaitForApplication] = useState<boolean>(true)
     const [applicationNotFound, setApplicationNotFound] = useState<boolean>(false)
     const [activeChannel, setActiveChannel] = useState<string>()
