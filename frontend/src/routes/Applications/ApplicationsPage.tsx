@@ -7,7 +7,7 @@ import { useTranslation } from '../../lib/acm-i18next'
 import { queryRemoteArgoApps, queryOCPAppResources } from '../../lib/search'
 import { useQuery } from '../../lib/useQuery'
 import { NavigationPath } from '../../NavigationPath'
-import { PluginContext } from '../../lib/PluginContext'
+import { useSetRecoilState, useSharedAtoms } from '../../shared-recoil'
 
 const ApplicationsOverviewPage = lazy(() => import('./Overview'))
 const AdvancedConfigurationPage = lazy(() => import('./AdvancedConfiguration'))
@@ -23,10 +23,7 @@ export default function ApplicationsPage() {
     useEffect(startPolling, [startPolling])
     useEffect(startPollingOCPResources, [startPollingOCPResources])
 
-    const { dataContext } = useContext(PluginContext)
-    const { recoil, atoms } = useContext(dataContext)
-    const { useSetRecoilState } = recoil
-    const { discoveredApplicationsState, discoveredOCPAppResourcesState } = atoms
+    const { discoveredApplicationsState, discoveredOCPAppResourcesState } = useSharedAtoms()
 
     const setDiscoveredAppilcations = useSetRecoilState(discoveredApplicationsState)
     const setDiscoveredOCPAppResources = useSetRecoilState(discoveredOCPAppResourcesState)
