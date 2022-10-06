@@ -11,10 +11,10 @@ import {
     NMStateK8sResource,
     NodePoolK8sResource,
 } from 'openshift-assisted-ui-lib/cim'
-import { Fragment, ReactNode, useEffect, useMemo, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useMemo, useContext } from 'react'
+import { PluginDataContext } from './lib/PluginDataContext'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { atom, SetterOrUpdater, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { LoadingPage } from './components/LoadingPage'
 import {
     AgentClusterInstallApiVersion,
     AgentClusterInstallKind,
@@ -267,7 +267,8 @@ export interface SettingsEvent {
 type ServerSideEventData = WatchEvent | SettingsEvent | { type: 'START' | 'LOADED' }
 
 export function LoadData(props: { children?: ReactNode }) {
-    const [loading, setLoading] = useState(true)
+    const { setLoaded } = useContext(PluginDataContext)
+
     const setAgentClusterInstalls = useSetRecoilState(agentClusterInstallsState)
     const setAgents = useSetRecoilState(agentsState)
     const setAnsibleJobs = useSetRecoilState(ansibleJobState)
@@ -512,11 +513,11 @@ export function LoadData(props: { children?: ReactNode }) {
                             eventQueue.length = 0
                             break
                         case 'LOADED':
-                            setLoading((loading) => {
-                                if (loading) {
+                            setLoaded((loaded) => {
+                                if (!loaded) {
                                     processEventQueue()
                                 }
-                                return false
+                                return true
                             })
                             break
                         case 'SETTINGS':
@@ -551,7 +552,7 @@ export function LoadData(props: { children?: ReactNode }) {
             clearInterval(timeout)
             if (evtSource) evtSource.close()
         }
-    }, [setSettings, setters])
+    }, [setSettings, setters, setLoaded])
 
     useEffect(() => {
         function checkLoggedIn() {
@@ -575,12 +576,13 @@ export function LoadData(props: { children?: ReactNode }) {
                     setTimeout(checkLoggedIn, 30 * 1000)
                 })
         }
-        checkLoggedIn()
+
+        if (process.env.MODE !== 'plugin') {
+            checkLoggedIn()
+        }
     }, [])
 
     const children = useMemo(() => <Fragment>{props.children}</Fragment>, [props.children])
-
-    if (loading || getBackendUrl() === undefined) return <LoadingPage />
 
     return children
 }
