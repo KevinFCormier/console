@@ -2,18 +2,13 @@
 import * as React from 'react'
 import { CIM } from 'openshift-assisted-ui-lib'
 import { FormikProps } from 'formik'
-import {
-    agentsState,
-    clusterImageSetsState,
-    infraEnvironmentsState,
-    nodePoolsState,
-} from '../../../../../../../../atoms'
-import { useRecoilValue, waitForAll } from 'recoil'
 import { HypershiftAgentContext } from './HypershiftAgentContext'
 import { getClusterImageSet } from './utils'
+import { useSharedAtoms, useRecoilValue } from '../../../../../../../../shared-recoil'
+import { PluginDataContext } from '../../../../../../../../lib/PluginDataContext'
 
 const { HostedClusterHostsStep, LoadingState } = CIM
-
+const { useContext } = React
 type FormControl = {
     active: any // CIM.HostsFormValues
     disabled?: VoidFunction
@@ -33,6 +28,8 @@ type HostsFormProps = {
 const HostsForm: React.FC<HostsFormProps> = ({ control, handleChange }) => {
     const { nodePools, setNodePools, clusterName, releaseImage, infraEnvNamespace, setInfraEnvNamespace } =
         React.useContext(HypershiftAgentContext)
+    const { agentsState, clusterImageSetsState, infraEnvironmentsState, nodePoolsState } = useSharedAtoms()
+    const { waitForAll } = useContext(PluginDataContext)
     const [agents, infraEnvironments, clusterImageSets, currentNodePools] = useRecoilValue(
         waitForAll([agentsState, infraEnvironmentsState, clusterImageSetsState, nodePoolsState])
     )

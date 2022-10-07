@@ -17,7 +17,6 @@ import {
     useState,
 } from 'react'
 import { Link, Redirect, Route, RouteComponentProps, Switch, useHistory, useLocation } from 'react-router-dom'
-import { useRecoilCallback } from 'recoil'
 import { RbacDropdown } from '../../../components/Rbac'
 import { useTranslation } from '../../../lib/acm-i18next'
 import { canUser, rbacPatch } from '../../../lib/rbac-util'
@@ -56,7 +55,7 @@ import { getApplication } from './ApplicationTopology/model/application'
 import { getResourceStatuses } from './ApplicationTopology/model/resourceStatuses'
 import { getTopology } from './ApplicationTopology/model/topology'
 import { getApplicationData } from './ApplicationTopology/model/utils'
-import { useSharedAtoms } from '../../../shared-recoil'
+import { useSharedAtoms, useRecoilCallback } from '../../../shared-recoil'
 
 export const ApplicationContext = createContext<{
     readonly actions: null | ReactNode

@@ -2,15 +2,16 @@
 import { ClusterContext } from '../ClusterDetails/ClusterDetails'
 import { useContext } from 'react'
 import HypershiftClusterInstallProgress from './HypershiftClusterInstallProgress'
-import { useRecoilValue, waitForAll } from 'recoil'
-import { agentMachinesState, clusterImageSetsState, configMapsState, nodePoolsState } from '../../../../../atoms'
 import { createResource, deleteResource, getResource, patchResource } from '../../../../../resources'
 import { AcmExpandableCard } from '../../../../../ui-components'
 import { launchToOCP } from '../../../../../lib/ocp-utils'
+import { useSharedAtoms, useRecoilValue } from '../../../../../shared-recoil'
+import { PluginDataContext } from '../../../../../lib/PluginDataContext'
 
 const HypershiftClusterDetails: React.FC = () => {
     const { hostedCluster } = useContext(ClusterContext)
-
+    const { waitForAll } = useContext(PluginDataContext)
+    const { agentMachinesState, clusterImageSetsState, configMapsState, nodePoolsState } = useSharedAtoms()
     const [nodePools, clusterImageSets] = useRecoilValue(
         waitForAll([nodePoolsState, clusterImageSetsState, agentMachinesState, configMapsState])
     )
