@@ -20,21 +20,6 @@ import {
 import { createContext, Fragment, Suspense, useEffect, useState } from 'react'
 import { Link, Redirect, Route, RouteComponentProps, Switch, useHistory, useLocation } from 'react-router-dom'
 import { useRecoilValue, waitForAll } from 'recoil'
-import {
-    agentClusterInstallsState,
-    agentsState,
-    certificateSigningRequestsState,
-    clusterClaimsState,
-    clusterCuratorsState,
-    clusterDeploymentsState,
-    clusterManagementAddonsState,
-    hostedClustersState,
-    infraEnvironmentsState,
-    managedClusterAddonsState,
-    managedClusterInfosState,
-    managedClustersState,
-    nodePoolsState,
-} from '../../../../../atoms'
 import { ErrorPage } from '../../../../../components/ErrorPage'
 import { usePrevious } from '../../../../../components/usePrevious'
 import { useTranslation } from '../../../../../lib/acm-i18next'
@@ -59,6 +44,7 @@ import { MachinePoolsPageContent } from './ClusterMachinePools/ClusterMachinePoo
 import { NodePoolsPageContent } from './ClusterNodes/ClusterNodes'
 import { ClusterOverviewPageContent } from './ClusterOverview/ClusterOverview'
 import { ClustersSettingsPageContent } from './ClusterSettings/ClusterSettings'
+import { useSharedAtoms } from '../../../../../shared-recoil'
 
 export const ClusterContext = createContext<{
     readonly cluster: Cluster | undefined
@@ -85,7 +71,21 @@ export default function ClusterDetailsPage({ match }: RouteComponentProps<{ id: 
     const location = useLocation()
     const history = useHistory()
     const { t } = useTranslation()
-
+    const {
+        agentClusterInstallsState,
+        agentsState,
+        certificateSigningRequestsState,
+        clusterClaimsState,
+        clusterCuratorsState,
+        clusterDeploymentsState,
+        clusterManagementAddonsState,
+        hostedClustersState,
+        infraEnvironmentsState,
+        managedClusterAddonsState,
+        managedClusterInfosState,
+        managedClustersState,
+        nodePoolsState,
+    } = useSharedAtoms()
     const [
         managedClusters,
         clusterDeployments,

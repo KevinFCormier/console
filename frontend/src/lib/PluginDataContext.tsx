@@ -9,12 +9,13 @@ import * as selectors from '../selectors'
 import { Dispatch, ProviderProps, createContext, useState, SetStateAction, useMemo } from 'react'
 import { LoadData } from '../atoms'
 
-const { RecoilRoot } = recoil
+const { RecoilRoot, waitForAll } = recoil
 
 export type PluginData = {
     recoil: typeof recoil
     atoms: typeof atoms
     selectors: typeof selectors
+    waitForAll: typeof waitForAll
     loaded: boolean
     startLoading: boolean
     setLoaded: Dispatch<SetStateAction<boolean>>
@@ -25,6 +26,7 @@ const defaultContext = {
     recoil,
     atoms,
     selectors,
+    waitForAll,
     loaded: false,
     startLoading: false,
     setLoaded: () => {},

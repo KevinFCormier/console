@@ -9,19 +9,9 @@ import {
     managedClusterSetLabel,
     mapClusters,
 } from '../../../../../resources'
-import { useRecoilValue, waitForAll } from 'recoil'
-import {
-    certificateSigningRequestsState,
-    clusterClaimsState,
-    clusterDeploymentsState,
-    managedClusterAddonsState,
-    managedClusterInfosState,
-    managedClustersState,
-    agentClusterInstallsState,
-    clusterCuratorsState,
-    hostedClustersState,
-    nodePoolsState,
-} from '../../../../../atoms'
+import { useRecoilValue, useSharedAtoms } from '../../../../../shared-recoil'
+import { PluginDataContext } from '../../../../../lib/PluginDataContext'
+import { useContext } from 'react'
 
 // returns the clusters assigned to a ManagedClusterSet
 export function useClusters(
@@ -29,6 +19,20 @@ export function useClusters(
     clusterPool?: ClusterPool | undefined,
     isGlobalClusterSet?: boolean
 ) {
+    const {
+        certificateSigningRequestsState,
+        clusterClaimsState,
+        clusterDeploymentsState,
+        managedClusterAddonsState,
+        managedClusterInfosState,
+        managedClustersState,
+        agentClusterInstallsState,
+        clusterCuratorsState,
+        hostedClustersState,
+        nodePoolsState,
+    } = useSharedAtoms()
+    const { waitForAll } = useContext(PluginDataContext)
+
     const [
         managedClusters,
         clusterDeployments,

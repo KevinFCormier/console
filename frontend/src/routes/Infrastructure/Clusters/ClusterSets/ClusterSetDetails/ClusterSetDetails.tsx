@@ -11,13 +11,7 @@ import {
 } from '../../../../../ui-components'
 import { createContext, Fragment, Suspense, useContext, useEffect, useState } from 'react'
 import { Link, Redirect, Route, RouteComponentProps, Switch, useHistory, useLocation } from 'react-router-dom'
-import { useRecoilState, useRecoilValue, waitForAll } from 'recoil'
-import {
-    clusterDeploymentsState,
-    clusterPoolsState,
-    managedClusterAddonsState,
-    managedClusterSetsState,
-} from '../../../../../atoms'
+import { useRecoilState, useRecoilValue, useSharedAtoms } from '../../../../../shared-recoil'
 import { ErrorPage } from '../../../../../components/ErrorPage'
 import { usePrevious } from '../../../../../components/usePrevious'
 import { Trans, useTranslation } from '../../../../../lib/acm-i18next'
@@ -47,6 +41,7 @@ import { ClusterSetManageResourcesPage } from './ClusterSetManageResources/Clust
 import { ClusterSetOverviewPageContent } from './ClusterSetOverview/ClusterSetOverview'
 import { ClusterSetSubmarinerPageContent } from './ClusterSetSubmariner/ClusterSetSubmariner'
 import { useQuery } from '../../../../../lib/useQuery'
+import { PluginDataContext } from '../../../../../lib/PluginDataContext'
 
 export const ClusterSetContext = createContext<{
     readonly clusterSet: ManagedClusterSet | undefined
@@ -71,6 +66,9 @@ export default function ClusterSetDetailsPage({ match }: RouteComponentProps<{ i
     const history = useHistory()
     const { t } = useTranslation()
     const { isSubmarinerAvailable } = useContext(PluginContext)
+    const { waitForAll } = useContext(PluginDataContext)
+    const { clusterDeploymentsState, clusterPoolsState, managedClusterAddonsState, managedClusterSetsState } =
+        useSharedAtoms()
 
     const [managedClusterSets, managedClusterAddons] = useRecoilValue(
         waitForAll([managedClusterSetsState, managedClusterAddonsState])

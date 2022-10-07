@@ -41,7 +41,6 @@ export function useRecoilState<T>(param: RecoilState<T>): [T, SetterOrUpdater<T>
     return useSharedRecoilState(param)
 }
 
-// <Args extends readonly unknown[], Return>(fn: (interface: CallbackInterface)
 export function useRecoilCallback<Args extends readonly unknown[], Return>(
     param: (interfce: CallbackInterface) => (...args: Args) => Return,
     deps?: readonly unknown[] | undefined

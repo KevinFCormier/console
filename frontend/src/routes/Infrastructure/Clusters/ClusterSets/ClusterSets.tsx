@@ -25,20 +25,6 @@ import { fitContent } from '@patternfly/react-table'
 import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from '../../../../lib/acm-i18next'
 import { Link } from 'react-router-dom'
-import { useRecoilValue, waitForAll } from 'recoil'
-import {
-    agentClusterInstallsState,
-    certificateSigningRequestsState,
-    clusterDeploymentsState,
-    clusterManagementAddonsState,
-    hostedClustersState,
-    managedClusterAddonsState,
-    managedClusterInfosState,
-    managedClusterSetBindingsState,
-    managedClusterSetsState,
-    managedClustersState,
-    nodePoolsState,
-} from '../../../../atoms'
 import { BulkActionModel, errorIsNot, IBulkActionModelProps } from '../../../../components/BulkActionModel'
 import { DOC_LINKS, viewDocumentation } from '../../../../lib/doc-util'
 import { canUser } from '../../../../lib/rbac-util'
@@ -59,11 +45,25 @@ import { ClusterStatuses } from './components/ClusterStatuses'
 import { GlobalClusterSetPopover } from './components/GlobalClusterSetPopover'
 import { CreateClusterSetModal } from './CreateClusterSet/CreateClusterSetModal'
 import { PluginContext } from '../../../../lib/PluginContext'
+import { useSharedAtoms, useRecoilValue } from '../../../../shared-recoil'
+import { PluginDataContext } from '../../../../lib/PluginDataContext'
 
 export default function ClusterSetsPage() {
     const { t } = useTranslation()
     const { isSubmarinerAvailable } = useContext(PluginContext)
     const alertContext = useContext(AcmAlertContext)
+    const { waitForAll } = useContext(PluginDataContext)
+    const {
+        agentClusterInstallsState,
+        certificateSigningRequestsState,
+        clusterDeploymentsState,
+        hostedClustersState,
+        managedClusterAddonsState,
+        managedClusterInfosState,
+        managedClusterSetsState,
+        managedClustersState,
+        nodePoolsState,
+    } = useSharedAtoms()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => alertContext.clearAlerts, [])
@@ -165,6 +165,8 @@ export default function ClusterSetsPage() {
 }
 
 const PageActions = () => {
+    const { clusterManagementAddonsState } = useSharedAtoms()
+    const { waitForAll } = useContext(PluginDataContext)
     const [clusterManagementAddons] = useRecoilValue(waitForAll([clusterManagementAddonsState]))
     const addons = mapAddons(clusterManagementAddons)
 
@@ -195,7 +197,8 @@ export function ClusterSetsTable(props: { clusters?: Cluster[]; managedClusterSe
             .catch((err) => console.error(err))
         return () => canCreateManagedClusterSet.abort()
     }, [])
-
+    const { managedClusterSetBindingsState } = useSharedAtoms()
+    const { waitForAll } = useContext(PluginDataContext)
     const [managedClusterSetBindings] = useRecoilValue(waitForAll([managedClusterSetBindingsState]))
 
     function clusterSetSortFn(a: ManagedClusterSet, b: ManagedClusterSet): number {

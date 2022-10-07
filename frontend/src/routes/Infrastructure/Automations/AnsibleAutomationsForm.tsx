@@ -15,8 +15,7 @@ import { AcmForm, AcmLabelsInput, AcmModal, AcmSelect, AcmSubmit } from '../../.
 import _ from 'lodash'
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { settingsState, subscriptionOperatorsState } from '../../../atoms'
+import { useRecoilState, useRecoilValue } from '../../../shared-recoil'
 import { AcmDataFormPage } from '../../../components/AcmDataForm'
 import { FormData, Section } from '../../../components/AcmFormData'
 import { ErrorPage } from '../../../components/ErrorPage'
@@ -44,6 +43,7 @@ import { ansibleCredentialsValue } from '../../../selectors'
 import { CreateCredentialModal } from '../../../components/CreateCredentialModal'
 import { CredentialsForm } from '../../Credentials/CredentialsForm'
 import { GetProjects } from '../../../components/GetProjects'
+import { useSharedAtoms } from '../../../shared-recoil'
 
 export default function AnsibleAutomationsFormPage({
     match,
@@ -110,6 +110,7 @@ export function AnsibleAutomationsForm(props: {
     const { t } = useTranslation()
     const { ansibleCredentials, clusterCurator, isEditing, isViewing } = props
 
+    const { settingsState, subscriptionOperatorsState } = useSharedAtoms()
     const [settings] = useRecoilState(settingsState)
 
     const history = useHistory()
