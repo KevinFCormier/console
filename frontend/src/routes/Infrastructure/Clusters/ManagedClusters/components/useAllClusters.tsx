@@ -2,12 +2,11 @@
 
 import { Cluster, mapClusters } from '../../../../../resources'
 import { useContext, useMemo } from 'react'
-import { PluginContext } from '../../../../../lib/PluginContext'
+import { useSharedAtoms, useRecoilValue } from '../../../../../shared-recoil'
+import { PluginDataContext } from '../../../../../lib/PluginDataContext'
 
 export function useAllClusters() {
-    const { dataContext } = useContext(PluginContext)
-    const { recoil, atoms } = useContext(dataContext)
-    const { useRecoilValue, waitForAll } = recoil
+    const { waitForAll } = useContext(PluginDataContext)
     const {
         managedClustersState,
         clusterDeploymentsState,
@@ -19,7 +18,7 @@ export function useAllClusters() {
         agentClusterInstallsState,
         hostedClustersState,
         nodePoolsState,
-    } = atoms
+    } = useSharedAtoms()
     const [
         managedClusters,
         clusterDeployments,

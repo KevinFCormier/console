@@ -49,6 +49,7 @@ import { useAllClusters } from '../ManagedClusters/components/useAllClusters'
 import { ClusterClaimModal, ClusterClaimModalProps } from './components/ClusterClaimModal'
 import { ScaleClusterPoolModal, ScaleClusterPoolModalProps } from './components/ScaleClusterPoolModal'
 import { UpdateReleaseImageModal, UpdateReleaseImageModalProps } from './components/UpdateReleaseImageModal'
+import { PluginDataContext } from '../../../../lib/PluginDataContext'
 
 export default function ClusterPoolsPage() {
     const alertContext = useContext(AcmAlertContext)
@@ -57,8 +58,8 @@ export default function ClusterPoolsPage() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => alertContext.clearAlerts, [])
-
-    const { clusterImageSetsState, clusterPoolsState, clusterClaimsState } = useSharedAtoms()
+    const { waitForAll } = useContext(PluginDataContext)
+    const { clusterImageSetsState, clusterPoolsState } = useSharedAtoms()
     const [clusterPools] = useRecoilValue(waitForAll([clusterPoolsState, clusterImageSetsState]))
 
     return (
@@ -168,6 +169,8 @@ export function ClusterPoolsTable(props: {
     emptyState: React.ReactNode
     tableActionButtons?: IAcmTableButtonAction[]
 }) {
+    const { waitForAll } = useContext(PluginDataContext)
+    const { clusterImageSetsState, clusterClaimsState } = useSharedAtoms()
     const [clusterImageSets] = useRecoilValue(waitForAll([clusterImageSetsState]))
     const [clusterClaims] = useRecoilValue(waitForAll([clusterClaimsState]))
 
