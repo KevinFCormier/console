@@ -8,10 +8,7 @@ import isMatch from 'lodash/isMatch'
 import { HypershiftAgentContext } from './HypershiftAgentContext'
 import { Secret } from '../../../../../../../../resources'
 import { isBMPlatform } from '../../../../../../InfraEnvironments/utils'
-import { useSharedAtoms, useRecoilValue } from '../../../../../../../../shared-recoil'
-import { PluginDataContext } from '../../../../../../../../lib/PluginDataContext'
-
-const { useContext } = React
+import { useSharedAtoms, useSharedRecoil, useRecoilValue } from '../../../../../../../../shared-recoil'
 
 type FormControl = {
     active: any
@@ -32,8 +29,8 @@ type NetworkFormProps = {
 
 const NetworkForm: React.FC<NetworkFormProps> = ({ control, handleChange, controlProps }) => {
     const { nodePools, isAdvancedNetworking, setIsAdvancedNetworking, infraEnvNamespace } =
-        useContext(HypershiftAgentContext)
-    const { waitForAll } = useContext(PluginDataContext)
+        React.useContext(HypershiftAgentContext)
+    const { waitForAll } = useSharedRecoil()
     const { agentsState, infrastructuresState } = useSharedAtoms()
     const [agents, infrastructures] = useRecoilValue(waitForAll([agentsState, infrastructuresState]))
 

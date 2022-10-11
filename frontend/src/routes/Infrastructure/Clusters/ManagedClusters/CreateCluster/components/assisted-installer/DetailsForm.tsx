@@ -1,6 +1,6 @@
 /* Copyright Contributors to the Open Cluster Management project */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useRef, useEffect, useState, useMemo, useContext } from 'react'
+import { useCallback, useRef, useEffect, useState, useMemo } from 'react'
 import { FormikProps } from 'formik'
 import { CIM } from 'openshift-assisted-ui-lib'
 import { set, get, isEqual, startCase, camelCase, debounce } from 'lodash'
@@ -13,8 +13,7 @@ import { NavigationPath } from '../../../../../../../NavigationPath'
 import { Secret } from '../../../../../../../resources'
 import { useCanJoinClusterSets, useMustJoinClusterSet } from '../../../../ClusterSets/components/useCanJoinClusterSets'
 import { useClusterImages } from './utils'
-import { useSharedAtoms, useRecoilState, useRecoilValue } from '../../../../../../../shared-recoil'
-import { PluginDataContext } from '../../../../../../../lib/PluginDataContext'
+import { useSharedAtoms, useSharedRecoil, useRecoilState, useRecoilValue } from '../../../../../../../shared-recoil'
 
 const {
     ACMClusterDeploymentDetailsStep,
@@ -55,7 +54,7 @@ const fields: any = {
 
 const DetailsForm: React.FC<DetailsFormProps> = ({ control, handleChange, controlProps }) => {
     const { clusterDeploymentsState, clusterImageSetsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [clusterDeployments] = useRecoilState(clusterDeploymentsState)
     const [clusterImageSets] = useRecoilValue(waitForAll([clusterImageSetsState]))
     const formRef = useRef<FormikProps<any>>(null)

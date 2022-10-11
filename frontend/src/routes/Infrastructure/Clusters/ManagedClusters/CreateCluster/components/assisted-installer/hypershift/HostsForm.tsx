@@ -4,11 +4,9 @@ import { CIM } from 'openshift-assisted-ui-lib'
 import { FormikProps } from 'formik'
 import { HypershiftAgentContext } from './HypershiftAgentContext'
 import { getClusterImageSet } from './utils'
-import { useSharedAtoms, useRecoilValue } from '../../../../../../../../shared-recoil'
-import { PluginDataContext } from '../../../../../../../../lib/PluginDataContext'
+import { useSharedAtoms, useSharedRecoil, useRecoilValue } from '../../../../../../../../shared-recoil'
 
 const { HostedClusterHostsStep, LoadingState } = CIM
-const { useContext } = React
 type FormControl = {
     active: any // CIM.HostsFormValues
     disabled?: VoidFunction
@@ -29,7 +27,7 @@ const HostsForm: React.FC<HostsFormProps> = ({ control, handleChange }) => {
     const { nodePools, setNodePools, clusterName, releaseImage, infraEnvNamespace, setInfraEnvNamespace } =
         React.useContext(HypershiftAgentContext)
     const { agentsState, clusterImageSetsState, infraEnvironmentsState, nodePoolsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [agents, infraEnvironments, clusterImageSets, currentNodePools] = useRecoilValue(
         waitForAll([agentsState, infraEnvironmentsState, clusterImageSetsState, nodePoolsState])
     )

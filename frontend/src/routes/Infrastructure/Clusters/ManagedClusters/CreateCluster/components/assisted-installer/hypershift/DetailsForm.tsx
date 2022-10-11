@@ -17,8 +17,7 @@ import { useClusterImages } from '../utils'
 import { Secret } from '../../../../../../../../resources'
 import { HypershiftAgentContext } from './HypershiftAgentContext'
 import { getClusterImageVersion } from './utils'
-import { PluginDataContext } from '../../../../../../../../lib/PluginDataContext'
-import { useSharedAtoms, useRecoilValue } from '../../../../../../../../shared-recoil'
+import { useSharedAtoms, useSharedRecoil, useRecoilValue } from '../../../../../../../../shared-recoil'
 
 const { HostedClusterDetailsStep, labelsToArray, LoadingState, getSupportedCM } = CIM
 
@@ -52,7 +51,7 @@ const fields: any = {
 
 const DetailsForm: React.FC<DetailsFormProps> = ({ control, handleChange, controlProps }) => {
     const { setClusterName, setReleaseImage } = useContext(HypershiftAgentContext)
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const { clusterDeploymentsState, clusterImageSetsState, configMapsState } = useSharedAtoms()
     const [clusterDeployments, clusterImageSets, configMaps] = useRecoilValue(
         waitForAll([clusterDeploymentsState, clusterImageSetsState, configMapsState])

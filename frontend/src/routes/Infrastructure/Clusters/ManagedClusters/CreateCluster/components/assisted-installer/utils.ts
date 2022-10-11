@@ -24,8 +24,7 @@ import { ModalProps } from './types'
 import { deleteResources } from '../../../../../../../lib/delete-resources'
 import { IBulkActionModelProps } from '../../../../../../../components/BulkActionModel'
 import { AgentK8sResource, BareMetalHostK8sResource } from 'openshift-assisted-ui-lib/cim'
-import { PluginDataContext } from '../../../../../../../lib/PluginDataContext'
-import { useSharedAtoms, useRecoilValue } from '../../../../../../../shared-recoil'
+import { useSharedAtoms, useSharedRecoil, useRecoilValue } from '../../../../../../../shared-recoil'
 
 const {
     getAnnotationsFromAgentSelector,
@@ -283,7 +282,7 @@ export const onSaveNetworking = async (
 }
 
 export const useAssistedServiceNamespace = () => {
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const { multiClusterEnginesState } = useSharedAtoms()
     const [[multiClusterEngine]] = useRecoilValue(waitForAll([multiClusterEnginesState]))
     return useMemo(() => multiClusterEngine?.spec?.targetNamespace ?? 'multicluster-engine', [multiClusterEngine])
@@ -292,7 +291,7 @@ export const useAssistedServiceNamespace = () => {
 export const useAssistedServiceConfigMap = () => {
     const namespace = useAssistedServiceNamespace()
     const { configMapsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [configMaps] = useRecoilValue(waitForAll([configMapsState]))
     return useMemo(
         () => configMaps.find((cm) => cm.metadata.name === 'assisted-service' && cm.metadata.namespace === namespace),
@@ -308,7 +307,7 @@ export const useClusterDeployment = ({
     namespace?: string
 }): CIM.ClusterDeploymentK8sResource | undefined => {
     const { clusterDeploymentsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [clusterDeployments] = useRecoilValue(waitForAll([clusterDeploymentsState]))
     return useMemo(
         () =>
@@ -327,7 +326,7 @@ export const useAgentClusterInstall = ({
     namespace?: string
 }): CIM.AgentClusterInstallK8sResource | undefined => {
     const { agentClusterInstallsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [agentClusterInstalls] = useRecoilValue(waitForAll([agentClusterInstallsState]))
     return useMemo(
         () => agentClusterInstalls.find((aci) => aci.metadata.name === name && aci.metadata.namespace === namespace),
@@ -337,7 +336,7 @@ export const useAgentClusterInstall = ({
 
 export const useInfraEnv = ({ name, namespace }: { name: string; namespace: string }) => {
     const { infraEnvironmentsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [infraEnvs] = useRecoilValue(waitForAll([infraEnvironmentsState]))
     return useMemo(
         () => infraEnvs.find((ie) => ie.metadata.name === name && ie.metadata.namespace === namespace),
@@ -553,7 +552,7 @@ export const onChangeBMHHostname = async (bmh: CIM.BareMetalHostK8sResource, hos
 
 export const useAgentsOfAIFlow = ({ name, namespace }: { name: string; namespace: string }): AgentK8sResource[] => {
     const { agentsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [agents] = useRecoilValue(waitForAll([agentsState]))
     return useMemo(() => agents.filter((a) => isAgentOfCluster(a, name, namespace)), [agents]) || []
 }
@@ -566,7 +565,7 @@ export const useBMHsOfAIFlow = ({
     namespace?: string
 }): BareMetalHostK8sResource[] => {
     const { bareMetalAssetsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [bmhs] = useRecoilValue(waitForAll([bareMetalAssetsState]))
     return (
         useMemo(

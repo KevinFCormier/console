@@ -31,7 +31,7 @@ import {
     AGENT_LOCATION_LABEL_KEY,
     getAgentStatus,
 } from 'openshift-assisted-ui-lib/cim'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { BulkActionModel, IBulkActionModelProps } from '../../../components/BulkActionModel'
 import { RbacDropdown } from '../../../components/Rbac'
@@ -42,8 +42,7 @@ import { rbacDelete } from '../../../lib/rbac-util'
 import { NavigationPath } from '../../../NavigationPath'
 import { getDateTimeCell } from '../helpers/table-row-helpers'
 import { description, HostInventoryBanner } from './HostInventoryBanner'
-import { useSharedAtoms, useRecoilValue } from '../../../shared-recoil'
-import { PluginDataContext } from '../../../lib/PluginDataContext'
+import { useSharedAtoms, useSharedRecoil, useRecoilValue } from '../../../shared-recoil'
 
 const isDeleteDisabled = (infraEnvs: InfraEnvK8sResource[], agents: AgentK8sResource[]) => {
     let isDisabled = true
@@ -105,7 +104,7 @@ const deleteInfraEnv = (
 
 const InfraEnvironmentsPage: React.FC = () => {
     const { agentsState, infraEnvironmentsState } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const [infraEnvs, agents] = useRecoilValue(waitForAll([infraEnvironmentsState, agentsState]))
     const { t } = useTranslation()
 
