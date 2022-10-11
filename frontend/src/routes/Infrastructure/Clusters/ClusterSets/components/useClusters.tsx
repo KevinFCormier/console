@@ -17,6 +17,7 @@ export function useClusters(
     clusterPool?: ClusterPool | undefined,
     isGlobalClusterSet?: boolean
 ) {
+    const { waitForAll } = useSharedRecoil()
     const {
         certificateSigningRequestsState,
         clusterClaimsState,
@@ -29,7 +30,6 @@ export function useClusters(
         hostedClustersState,
         nodePoolsState,
     } = useSharedAtoms()
-    const { waitForAll } = useSharedRecoil()
 
     const [
         managedClusters,

@@ -1,12 +1,11 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 import { Cluster, mapClusters } from '../../../../../resources'
-import { useContext, useMemo } from 'react'
-import { useSharedAtoms, useRecoilValue } from '../../../../../shared-recoil'
-import { PluginDataContext } from '../../../../../lib/PluginDataContext'
+import { useMemo } from 'react'
+import { useSharedAtoms, useRecoilValue, useSharedRecoil } from '../../../../../shared-recoil'
 
 export function useAllClusters() {
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const {
         managedClustersState,
         clusterDeploymentsState,
