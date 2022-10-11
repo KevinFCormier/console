@@ -9,9 +9,7 @@ import {
     managedClusterSetLabel,
     mapClusters,
 } from '../../../../../resources'
-import { useRecoilValue, useSharedAtoms } from '../../../../../shared-recoil'
-import { PluginDataContext } from '../../../../../lib/PluginDataContext'
-import { useContext } from 'react'
+import { useRecoilValue, useSharedAtoms, useSharedRecoil } from '../../../../../shared-recoil'
 
 // returns the clusters assigned to a ManagedClusterSet
 export function useClusters(
@@ -31,7 +29,7 @@ export function useClusters(
         hostedClustersState,
         nodePoolsState,
     } = useSharedAtoms()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
 
     const [
         managedClusters,

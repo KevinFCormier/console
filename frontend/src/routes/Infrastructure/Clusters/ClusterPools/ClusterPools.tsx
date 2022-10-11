@@ -26,7 +26,7 @@ import {
 } from '../../../../ui-components'
 import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useRecoilValue, useSharedAtoms } from '../../../../shared-recoil'
+import { useRecoilValue, useSharedAtoms, useSharedRecoil } from '../../../../shared-recoil'
 import { BulkActionModel, errorIsNot, IBulkActionModelProps } from '../../../../components/BulkActionModel'
 import { RbacButton, RbacDropdown } from '../../../../components/Rbac'
 import { TechPreviewAlert } from '../../../../components/TechPreviewAlert'
@@ -49,7 +49,6 @@ import { useAllClusters } from '../ManagedClusters/components/useAllClusters'
 import { ClusterClaimModal, ClusterClaimModalProps } from './components/ClusterClaimModal'
 import { ScaleClusterPoolModal, ScaleClusterPoolModalProps } from './components/ScaleClusterPoolModal'
 import { UpdateReleaseImageModal, UpdateReleaseImageModalProps } from './components/UpdateReleaseImageModal'
-import { PluginDataContext } from '../../../../lib/PluginDataContext'
 
 export default function ClusterPoolsPage() {
     const alertContext = useContext(AcmAlertContext)
@@ -58,7 +57,7 @@ export default function ClusterPoolsPage() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => alertContext.clearAlerts, [])
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const { clusterImageSetsState, clusterPoolsState } = useSharedAtoms()
     const [clusterPools] = useRecoilValue(waitForAll([clusterPoolsState, clusterImageSetsState]))
 
@@ -169,7 +168,7 @@ export function ClusterPoolsTable(props: {
     emptyState: React.ReactNode
     tableActionButtons?: IAcmTableButtonAction[]
 }) {
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const { clusterImageSetsState, clusterClaimsState } = useSharedAtoms()
     const [clusterImageSets] = useRecoilValue(waitForAll([clusterImageSetsState]))
     const [clusterClaims] = useRecoilValue(waitForAll([clusterClaimsState]))

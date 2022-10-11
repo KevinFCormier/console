@@ -43,8 +43,7 @@ import { MachinePoolsPageContent } from './ClusterMachinePools/ClusterMachinePoo
 import { NodePoolsPageContent } from './ClusterNodes/ClusterNodes'
 import { ClusterOverviewPageContent } from './ClusterOverview/ClusterOverview'
 import { ClustersSettingsPageContent } from './ClusterSettings/ClusterSettings'
-import { useSharedAtoms, useRecoilValue } from '../../../../../shared-recoil'
-import { PluginDataContext } from '../../../../../lib/PluginDataContext'
+import { useSharedAtoms, useRecoilValue, useSharedRecoil } from '../../../../../shared-recoil'
 
 export const ClusterContext = createContext<{
     readonly cluster: Cluster | undefined
@@ -71,7 +70,7 @@ export default function ClusterDetailsPage({ match }: RouteComponentProps<{ id: 
     const location = useLocation()
     const history = useHistory()
     const { t } = useTranslation()
-    const { waitForAll } = useContext(PluginDataContext)
+    const { waitForAll } = useSharedRecoil()
     const {
         agentClusterInstallsState,
         agentsState,
