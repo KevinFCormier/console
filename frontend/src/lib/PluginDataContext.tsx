@@ -44,6 +44,7 @@ export const usePluginDataContextValue = () => {
             recoil,
             atoms,
             selectors,
+            waitForAll,
             loaded,
             startLoading,
             defaultContext,
