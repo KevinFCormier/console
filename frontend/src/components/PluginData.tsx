@@ -1,10 +1,11 @@
 /* Copyright Contributors to the Open Cluster Management project */
 import { ReactNode, useContext, useEffect } from 'react'
-import { PluginDataContext } from '../lib/PluginDataContext'
+import { PluginContext } from '../lib/PluginContext'
 import { LoadingPage } from './LoadingPage'
 
 export function PluginData(props: { children?: ReactNode }) {
-    const { loaded, load } = useContext(PluginDataContext)
+    const { dataContext } = useContext(PluginContext)
+    const { loaded, load } = useContext(dataContext)
     useEffect(() => {
         if (!loaded) {
             load()

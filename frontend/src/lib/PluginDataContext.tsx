@@ -1,21 +1,20 @@
 /* Copyright Contributors to the Open Cluster Management project */
+import { Dispatch, ProviderProps, createContext, useState, SetStateAction, useMemo } from 'react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import * as atoms from '../atoms'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import * as recoil from 'recoil'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import * as selectors from '../selectors'
-
-import { Dispatch, ProviderProps, createContext, useState, SetStateAction, useMemo } from 'react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { LoadData } from '../atoms'
 
-const { RecoilRoot, waitForAll } = recoil
+const { RecoilRoot } = recoil
 
 export type PluginData = {
     recoil: typeof recoil
     atoms: typeof atoms
     selectors: typeof selectors
-    waitForAll: typeof waitForAll
     loaded: boolean
     startLoading: boolean
     setLoaded: Dispatch<SetStateAction<boolean>>
@@ -26,7 +25,6 @@ const defaultContext = {
     recoil,
     atoms,
     selectors,
-    waitForAll,
     loaded: false,
     startLoading: false,
     setLoaded: () => {},
@@ -44,16 +42,13 @@ export const usePluginDataContextValue = () => {
             recoil,
             atoms,
             selectors,
-            waitForAll,
             loaded,
             startLoading,
-            defaultContext,
             setLoaded,
             load: () => setStartLoading(true),
         }),
         [loaded, setLoaded, startLoading]
     )
-
     return contextValue
 }
 
