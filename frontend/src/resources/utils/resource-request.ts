@@ -4,12 +4,12 @@ import * as jsonpatch from 'fast-json-patch'
 import { noop } from 'lodash'
 import { getCookie } from '.'
 import { ApplicationKind, NamespaceKind, SubscriptionApiVersion, SubscriptionKind } from '..'
+import { tokenExpired } from '../../logout'
 import { getSubscriptionsFromAnnotation } from '../../routes/Applications/helpers/resource-helper'
 import { isLocalSubscription } from '../../routes/Applications/helpers/subscriptions'
 import { AnsibleTowerJobTemplateList } from '../ansible-job'
 import { getResourceApiPath, getResourceName, getResourceNameApiPath, IResource, ResourceList } from '../resource'
 import { Status, StatusKind } from '../status'
-import { useSharedAtoms } from '../../shared-recoil'
 
 export interface IRequestResult<ResultType = unknown> {
     promise: Promise<ResultType>
@@ -562,7 +562,6 @@ export async function fetchRetry<T>(options: {
     headers?: Record<string, string>
     disableRedirectUnauthorizedLogin?: boolean
 }): Promise<{ headers: Headers; status: number; data: T }> {
-    const { tokenExpired } = useSharedAtoms()
     let retries = options?.retries && Number.isInteger(options.retries) && options.retries >= 0 ? options.retries : 0
     let delay = options?.delay && Number.isInteger(options.delay) && options.delay > 0 ? options.delay : 100
 

@@ -67,16 +67,11 @@ import {
     WizTextInput,
 } from '@patternfly-labs/react-form-wizard'
 import { useSetHasValue } from '@patternfly-labs/react-form-wizard/lib/src/contexts/HasValueProvider'
-import {
-    ansibleCredentialsValue,
-    clusterCuratorSupportedCurationsValue,
-    validClusterCuratorTemplatesValue,
-} from '../../../../../selectors'
 import { TemplateLinkOut, TemplateSummaryExpandable } from '../../../../../components/TemplateSummaryModal'
 import { ExternalLinkAltIcon } from '@patternfly/react-icons'
 import { getOperatorError } from '../../../../../lib/error-output'
 import { makeStyles } from '@material-ui/styles'
-import { useSharedAtoms, useRecoilValue } from '../../../../../shared-recoil'
+import { useSharedAtoms, useRecoilValue, useSharedSelectors } from '../../../../../shared-recoil'
 
 const acmSchema = [...schema, ...kac]
 
@@ -788,6 +783,8 @@ const AutoImportControls = (props: { state: State; dispatch: Dispatch<Action> })
 
 const AutomationTemplate = (props: { state: State; dispatch: Dispatch<Action> }) => {
     const { t } = useTranslation()
+    const { ansibleCredentialsValue, clusterCuratorSupportedCurationsValue, validClusterCuratorTemplatesValue } =
+        useSharedSelectors()
     const curatorTemplates = useRecoilValue(validClusterCuratorTemplatesValue)
     const supportedCurations = useRecoilValue(clusterCuratorSupportedCurationsValue)
     const ansibleCredentials = useRecoilValue(ansibleCredentialsValue)

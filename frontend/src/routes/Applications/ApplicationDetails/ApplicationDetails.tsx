@@ -167,7 +167,17 @@ export default function ApplicationDetailsPage({ match }: RouteComponentProps<{ 
             subscriptions: subscriptionsState,
             subscriptionReports: subscriptionReportsState,
         }),
-        []
+        [
+            applicationsState,
+            applicationSetsState,
+            argoApplicationsState,
+            ansibleJobState,
+            channelsState,
+            placementsState,
+            placementRulesState,
+            subscriptionsState,
+            subscriptionReportsState,
+        ]
     )
 
     const getRecoilStates = useCallback(async () => {
@@ -351,7 +361,7 @@ export default function ApplicationDetailsPage({ match }: RouteComponentProps<{ 
                 setWaitForApplication(false)
             }, THROTTLE_EVENTS_DELAY)
         }
-    }, [applicationNotFound])
+    }, [applicationNotFound, THROTTLE_EVENTS_DELAY])
 
     // refresh application the first time and then every n seconds
     useEffect(() => {

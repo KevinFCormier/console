@@ -26,11 +26,6 @@ import {
     IAcmTableColumn,
 } from '../../../../../ui-components'
 import {
-    ansibleCredentialsValue,
-    clusterCuratorSupportedCurationsValue,
-    validClusterCuratorTemplatesValue,
-} from '../../../../../selectors'
-import {
     Button,
     ButtonVariant,
     Flex,
@@ -47,7 +42,7 @@ import { useClusterDistributionColumn, useClusterProviderColumn } from '../Manag
 import { NavigationPath } from '../../../../../NavigationPath'
 import { cloneDeep } from 'lodash'
 import { ExternalLinkAltIcon } from '@patternfly/react-icons'
-import { useSharedAtoms, useRecoilValue } from '../../../../../shared-recoil'
+import { useSharedAtoms, useRecoilValue, useSharedSelectors } from '../../../../../shared-recoil'
 
 const useStyles = makeStyles({
     body: {},
@@ -74,6 +69,8 @@ export function UpdateAutomationModal(props: {
     const { t } = useTranslation()
     const classes = useStyles()
     const { clusterCuratorsState } = useSharedAtoms()
+    const { ansibleCredentialsValue, clusterCuratorSupportedCurationsValue, validClusterCuratorTemplatesValue } =
+        useSharedSelectors()
     const validCuratorTemplates = useRecoilValue(validClusterCuratorTemplatesValue)
     const clusterCurators = useRecoilValue(clusterCuratorsState)
     const supportedCurations = useRecoilValue(clusterCuratorSupportedCurationsValue)

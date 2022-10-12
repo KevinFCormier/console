@@ -12,12 +12,6 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import MonacoEditor from 'react-monaco-editor'
 import { useHistory, useLocation } from 'react-router-dom'
 import TemplateEditor from '../../../../../components/TemplateEditor'
-import {
-    ansibleCredentialsValue,
-    clusterCuratorSupportedCurationsValue,
-    providerConnectionsValue,
-    validClusterCuratorTemplatesValue,
-} from '../../../../../selectors'
 import { useTranslation } from '../../../../../lib/acm-i18next'
 import { createCluster } from '../../../../../lib/create-cluster'
 import { DOC_LINKS } from '../../../../../lib/doc-util'
@@ -57,7 +51,7 @@ import getControlDataCIM from './controlData/ControlDataCIM'
 import getControlDataAI from './controlData/ControlDataAI'
 import { CredentialsForm } from '../../../../Credentials/CredentialsForm'
 import { GetProjects } from '../../../../../components/GetProjects'
-import { useSharedAtoms, useRecoilState, useRecoilValue } from '../../../../../shared-recoil'
+import { useSharedAtoms, useRecoilState, useRecoilValue, useSharedSelectors } from '../../../../../shared-recoil'
 
 const { isAIFlowInfraEnv } = CIM
 interface CreationStatus {
@@ -85,6 +79,12 @@ export default function CreateClusterPage() {
     const location = useLocation()
     const { agentClusterInstallsState, infraEnvironmentsState, managedClustersState, secretsState, settingsState } =
         useSharedAtoms()
+    const {
+        ansibleCredentialsValue,
+        clusterCuratorSupportedCurationsValue,
+        providerConnectionsValue,
+        validClusterCuratorTemplatesValue,
+    } = useSharedSelectors()
     const secrets = useRecoilValue(secretsState)
     const providerConnections = useRecoilValue(providerConnectionsValue)
     const ansibleCredentials = useRecoilValue(ansibleCredentialsValue)

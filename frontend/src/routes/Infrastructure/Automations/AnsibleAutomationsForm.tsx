@@ -15,7 +15,7 @@ import { AcmForm, AcmLabelsInput, AcmModal, AcmSelect, AcmSubmit } from '../../.
 import _ from 'lodash'
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from '../../../shared-recoil'
+import { useRecoilState, useRecoilValue, useSharedSelectors } from '../../../shared-recoil'
 import { AcmDataFormPage } from '../../../components/AcmDataForm'
 import { FormData, Section } from '../../../components/AcmFormData'
 import { ErrorPage } from '../../../components/ErrorPage'
@@ -39,7 +39,6 @@ import {
     Secret,
 } from '../../../resources'
 import schema from './schema.json'
-import { ansibleCredentialsValue } from '../../../selectors'
 import { CreateCredentialModal } from '../../../components/CreateCredentialModal'
 import { CredentialsForm } from '../../Credentials/CredentialsForm'
 import { GetProjects } from '../../../components/GetProjects'
@@ -59,7 +58,7 @@ export default function AnsibleAutomationsFormPage({
 
     const [error, setError] = useState<Error>()
     const [clusterCuratorTemplate, setClusterCuratorTemplate] = useState<ClusterCurator | undefined>()
-
+    const { ansibleCredentialsValue } = useSharedSelectors()
     const ansibleCredentials = useRecoilValue(ansibleCredentialsValue)
 
     useEffect(() => {

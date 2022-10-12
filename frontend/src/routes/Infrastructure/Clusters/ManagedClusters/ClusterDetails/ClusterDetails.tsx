@@ -17,7 +17,7 @@ import {
     HostedClusterK8sResource,
     InfraEnvK8sResource,
 } from 'openshift-assisted-ui-lib/cim'
-import { createContext, Fragment, Suspense, useContext, useEffect, useState } from 'react'
+import { createContext, Fragment, Suspense, useEffect, useState } from 'react'
 import { Link, Redirect, Route, RouteComponentProps, Switch, useHistory, useLocation } from 'react-router-dom'
 import { ErrorPage } from '../../../../../components/ErrorPage'
 import { usePrevious } from '../../../../../components/usePrevious'
