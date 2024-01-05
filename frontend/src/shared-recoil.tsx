@@ -3,7 +3,7 @@
 import { RecoilState, RecoilValue, SetterOrUpdater } from 'recoil'
 
 import { PluginContext } from './lib/PluginContext'
-import { useContext } from 'react'
+import { useContext, useLayoutEffect } from 'react'
 
 /* Do not export - wrapper functions should be used to track atom usage */
 function useSharedRecoil() {
@@ -11,6 +11,14 @@ function useSharedRecoil() {
   const { recoil } = useContext(dataContext)
 
   return recoil
+}
+
+function useWaitForRecoilValue<T>(param: RecoilValue<T>) {
+  const { dataContext } = useContext(PluginContext)
+  const { setDataRequired } = useContext(dataContext)
+  useLayoutEffect(() => {
+    setDataRequired(true)
+  }, [setDataRequired])
 }
 
 export function useSharedAtoms() {
@@ -28,6 +36,7 @@ export function useSharedSelectors() {
 }
 
 export function useRecoilValue<T>(param: RecoilValue<T>): T {
+  useWaitForRecoilValue(param)
   const { useRecoilValue: useSharedRecoilValue } = useSharedRecoil()
   return useSharedRecoilValue(param)
 }
@@ -38,8 +47,9 @@ export function useSetRecoilState<T>(param: RecoilState<T>): SetterOrUpdater<T> 
 }
 
 export function useRecoilValueGetter<T>(param: RecoilValue<T>): () => T {
-  const { useRecoilCallback: useSharedRecoilCallback } = useSharedRecoil()
-  return useSharedRecoilCallback<[], T>(
+  useWaitForRecoilValue(param)
+  const { useRecoilCallback } = useSharedRecoil()
+  return useRecoilCallback<[], T>(
     ({ snapshot }) =>
       () =>
         snapshot.getLoadable(param).contents,

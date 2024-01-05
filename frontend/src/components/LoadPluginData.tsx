@@ -6,11 +6,11 @@ import { LostChangesProvider } from './LostChanges'
 
 export const LoadPluginData = (props: { children?: ReactNode }) => {
   const { dataContext } = useContext(PluginContext)
-  const { loaded, load } = useContext(dataContext)
+  const { dataPending, startLoading, load } = useContext(dataContext)
   useEffect(() => {
-    if (!loaded) {
+    if (!startLoading) {
       load()
     }
-  }, [load, loaded])
-  return loaded ? <LostChangesProvider>{props.children}</LostChangesProvider> : <LoadingPage />
+  }, [load, startLoading])
+  return !dataPending ? <LostChangesProvider>{props.children}</LostChangesProvider> : <LoadingPage />
 }

@@ -15,6 +15,8 @@ export type PluginData = {
   startLoading: boolean
   setLoaded: Dispatch<SetStateAction<boolean>>
   load: () => void
+  setDataRequired: Dispatch<SetStateAction<boolean>>
+  dataPending: boolean
 }
 
 export const defaultContext = {
@@ -25,6 +27,8 @@ export const defaultContext = {
   startLoading: false,
   setLoaded: () => {},
   load: () => {},
+  setDataRequired: () => {},
+  dataPending: false,
 }
 
 export const PluginDataContext = createContext<PluginData>(defaultContext)
@@ -32,6 +36,7 @@ export const PluginDataContext = createContext<PluginData>(defaultContext)
 export const usePluginDataContextValue = () => {
   const [loaded, setLoaded] = useState(false)
   const [startLoading, setStartLoading] = useState(false)
+  const [dataRequired, setDataRequired] = useState(false)
 
   const contextValue = useMemo(
     () => ({
@@ -42,8 +47,10 @@ export const usePluginDataContextValue = () => {
       startLoading,
       setLoaded,
       load: () => setStartLoading(true),
+      setDataRequired,
+      dataPending: dataRequired && !loaded,
     }),
-    [loaded, setLoaded, startLoading]
+    [dataRequired, loaded, setLoaded, startLoading]
   )
   return contextValue
 }
