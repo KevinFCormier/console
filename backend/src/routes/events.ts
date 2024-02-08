@@ -1,7 +1,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 /* eslint-disable no-constant-condition */
 
-import eventStream from 'event-stream'
+import { map, split } from 'event-stream'
 import get from 'get-value'
 import got, { CancelError, HTTPError, TimeoutError } from 'got'
 import { Http2ServerRequest, Http2ServerResponse } from 'http2'
@@ -15,14 +15,21 @@ import { getServiceAccountToken } from '../lib/serviceAccountToken'
 import { getAuthenticatedToken } from '../lib/token'
 import { IResource } from '../resources/resource'
 
-const { map, split } = eventStream
 const pipeline = promisify(Stream.pipeline)
 
-export async function events(req: Http2ServerRequest, res: Http2ServerResponse): Promise<void> {
-  const token = await getAuthenticatedToken(req, res)
-  if (token) {
-    ServerSideEvents.handleRequest(token, req, res)
-  }
+enum ResourceGroup {
+  Core = 'Core',
+  Infrastructure = 'Infrastructure',
+  Applications = 'Applications',
+  Governance = 'Governance',
+}
+
+interface IWatchOptions {
+  apiVersion: string
+  kind: string
+  group: ResourceGroup
+  labelSelector?: Record<string, string>
+  fieldSelector?: Record<string, string>
 }
 
 interface WatchEvent {
@@ -37,6 +44,13 @@ export interface SettingsEvent {
 
 type ServerSideEventData = WatchEvent | SettingsEvent | { type: 'START' | 'LOADED' }
 
+export async function events(req: Http2ServerRequest, res: Http2ServerResponse): Promise<void> {
+  const token = await getAuthenticatedToken(req, res)
+  if (token) {
+    ServerSideEvents.handleRequest(token, req, res)
+  }
+}
+
 let requests: { cancel: () => void }[] = []
 
 const resourceCache: {
@@ -50,80 +64,154 @@ const resourceCache: {
 
 const accessCache: Record<string, Record<string, { time: number; promise: Promise<boolean> }>> = {}
 
+// Watch definitions are grouped according to area of the console in which they are accessed.
+// Within groups, the sorting is by number of spots in the code to allow more pages to load faster
+// when accessed as the first page. This does not need to be kept strictly in order.
 const definitions: IWatchOptions[] = [
-  { kind: 'ClusterManagementAddOn', apiVersion: 'addon.open-cluster-management.io/v1alpha1' },
-  { kind: 'ManagedClusterAddOn', apiVersion: 'addon.open-cluster-management.io/v1alpha1' },
-  { kind: 'Agent', apiVersion: 'agent-install.openshift.io/v1beta1' },
-  { kind: 'AgentServiceConfig', apiVersion: 'agent-install.openshift.io/v1beta1' },
-  { kind: 'InfraEnv', apiVersion: 'agent-install.openshift.io/v1beta1' },
-  { kind: 'NMStateConfig', apiVersion: 'agent-install.openshift.io/v1beta1' },
-  { kind: 'Application', apiVersion: 'app.k8s.io/v1beta1' },
-  { kind: 'Channel', apiVersion: 'apps.open-cluster-management.io/v1' },
-  { kind: 'GitOpsCluster', apiVersion: 'apps.open-cluster-management.io/v1beta1' },
-  { kind: 'HelmRelease', apiVersion: 'apps.open-cluster-management.io/v1' },
-  { kind: 'PlacementRule', apiVersion: 'apps.open-cluster-management.io/v1' },
-  { kind: 'Subscription', apiVersion: 'apps.open-cluster-management.io/v1' },
-  { kind: 'SubscriptionReport', apiVersion: 'apps.open-cluster-management.io/v1alpha1' },
-  { kind: 'Application', apiVersion: 'argoproj.io/v1alpha1' },
-  { kind: 'ApplicationSet', apiVersion: 'argoproj.io/v1alpha1' },
-  { kind: 'ArgoCD', apiVersion: 'argoproj.io/v1alpha1' },
-  { kind: 'MulticlusterApplicationSetReport', apiVersion: 'apps.open-cluster-management.io/v1alpha1' },
-  { kind: 'Infrastructure', apiVersion: 'config.openshift.io/v1' },
+  // Core resources used across all parts of the console
+  { kind: 'Namespace', apiVersion: 'v1', group: ResourceGroup.Core },
+  { kind: 'ManagedCluster', apiVersion: 'cluster.open-cluster-management.io/v1', group: ResourceGroup.Core },
   {
-    kind: 'CertificateSigningRequest',
-    apiVersion: 'certificates.k8s.io/v1',
-    labelSelector: { 'open-cluster-management.io/cluster-name': '' },
+    kind: 'Secret',
+    apiVersion: 'v1',
+    group: ResourceGroup.Core,
+    labelSelector: { 'cluster.open-cluster-management.io/credentials': '' },
   },
-  { kind: 'ManagedCluster', apiVersion: 'cluster.open-cluster-management.io/v1' },
-  { kind: 'Placement', apiVersion: 'cluster.open-cluster-management.io/v1beta1' },
-  { kind: 'Placement', apiVersion: 'cluster.open-cluster-management.io/v1alpha1' },
-  { kind: 'PlacementDecision', apiVersion: 'cluster.open-cluster-management.io/v1alpha1' },
-  { kind: 'PlacementDecision', apiVersion: 'cluster.open-cluster-management.io/v1beta1' },
-  { kind: 'ManagedClusterSetBinding', apiVersion: 'cluster.open-cluster-management.io/v1beta2' },
-  { kind: 'ManagedClusterSet', apiVersion: 'cluster.open-cluster-management.io/v1beta2' },
-  { kind: 'ClusterCurator', apiVersion: 'cluster.open-cluster-management.io/v1beta1' },
-  { kind: 'Subscription', apiVersion: 'operators.coreos.com/v1alpha1' },
-  { kind: 'DiscoveredCluster', apiVersion: 'discovery.open-cluster-management.io/v1' },
-  { kind: 'DiscoveryConfig', apiVersion: 'discovery.open-cluster-management.io/v1' },
-  { kind: 'AgentClusterInstall', apiVersion: 'extensions.hive.openshift.io/v1beta1' },
-  { kind: 'ClusterClaim', apiVersion: 'hive.openshift.io/v1' },
-  { kind: 'ClusterDeployment', apiVersion: 'hive.openshift.io/v1' },
-  { kind: 'ClusterImageSet', apiVersion: 'hive.openshift.io/v1' },
-  { kind: 'ClusterPool', apiVersion: 'hive.openshift.io/v1' },
-  { kind: 'ClusterProvision', apiVersion: 'hive.openshift.io/v1' },
-  { kind: 'MachinePool', apiVersion: 'hive.openshift.io/v1' },
-  { kind: 'ManagedClusterInfo', apiVersion: 'internal.open-cluster-management.io/v1beta1' },
-  { kind: 'BareMetalHost', apiVersion: 'metal3.io/v1alpha1' },
-  { kind: 'MultiClusterEngine', apiVersion: 'multicluster.openshift.io/v1' },
-  { kind: 'ClusterVersion', apiVersion: 'config.openshift.io/v1' },
-  { kind: 'StorageClass', apiVersion: 'storage.k8s.io/v1' },
-  { kind: 'PlacementBinding', apiVersion: 'policy.open-cluster-management.io/v1' },
-  { kind: 'Policy', apiVersion: 'policy.open-cluster-management.io/v1' },
-  { kind: 'PolicyAutomation', apiVersion: 'policy.open-cluster-management.io/v1beta1' },
-  { kind: 'PolicySet', apiVersion: 'policy.open-cluster-management.io/v1beta1' },
-  { kind: 'SubmarinerConfig', apiVersion: 'submarineraddon.open-cluster-management.io/v1alpha1' },
-  { kind: 'AnsibleJob', apiVersion: 'tower.ansible.com/v1alpha1' },
-  { kind: 'ConfigMap', apiVersion: 'v1', fieldSelector: { 'metadata.name': 'insight-content-data' } },
+  // **Need to look for creds with: 'cluster.open-cluster-management.io/type': 'ans', for edit scenarios
+  {
+    kind: 'Secret',
+    apiVersion: 'v1',
+    group: ResourceGroup.Core,
+    labelSelector: { 'cluster.open-cluster-management.io/type': 'ans' },
+  },
+  {
+    kind: 'Secret',
+    apiVersion: 'v1',
+    group: ResourceGroup.Core,
+    fieldSelector: { 'metadata.name': 'auto-import-secret' },
+  },
+  { kind: 'Placement', apiVersion: 'cluster.open-cluster-management.io/v1beta1', group: ResourceGroup.Core },
+  { kind: 'Placement', apiVersion: 'cluster.open-cluster-management.io/v1alpha1', group: ResourceGroup.Core },
+  { kind: 'ClusterCurator', apiVersion: 'cluster.open-cluster-management.io/v1beta1', group: ResourceGroup.Core },
+  { kind: 'PlacementRule', apiVersion: 'apps.open-cluster-management.io/v1', group: ResourceGroup.Core },
   {
     kind: 'ConfigMap',
     apiVersion: 'v1',
+    group: ResourceGroup.Core,
+    fieldSelector: { 'metadata.name': 'insight-content-data' },
+  },
+  {
+    kind: 'ConfigMap',
+    apiVersion: 'v1',
+    group: ResourceGroup.Core,
     fieldSelector: { 'metadata.name': 'assisted-service' },
   },
   {
     kind: 'ConfigMap',
     apiVersion: 'v1',
+    group: ResourceGroup.Core,
     fieldSelector: { 'metadata.namespace': 'openshift-config-managed', 'metadata.name': 'console-public' },
   },
-  { kind: 'Namespace', apiVersion: 'v1' },
-  { kind: 'Secret', apiVersion: 'v1', labelSelector: { 'cluster.open-cluster-management.io/credentials': '' } },
-  // **Need to look for creds with: 'cluster.open-cluster-management.io/type': 'ans', for edit scenarios
-  { kind: 'Secret', apiVersion: 'v1', labelSelector: { 'cluster.open-cluster-management.io/type': 'ans' } },
-  { kind: 'Secret', apiVersion: 'v1', fieldSelector: { 'metadata.name': 'auto-import-secret' } },
-  { kind: 'PolicyReport', apiVersion: 'wgpolicyk8s.io/v1alpha2' },
-  { kind: 'HostedCluster', apiVersion: 'hypershift.openshift.io/v1beta1' },
-  { kind: 'NodePool', apiVersion: 'hypershift.openshift.io/v1beta1' },
-  { kind: 'AgentMachine', apiVersion: 'capi-provider.agent-install.openshift.io/v1alpha1' },
-  { kind: 'ConfigMap', apiVersion: 'v1', labelSelector: { 'hypershift.openshift.io/supported-versions': 'true' } },
+  {
+    kind: 'ConfigMap',
+    apiVersion: 'v1',
+    group: ResourceGroup.Core,
+    labelSelector: { 'hypershift.openshift.io/supported-versions': 'true' },
+  },
+  { kind: 'ManagedClusterSet', apiVersion: 'cluster.open-cluster-management.io/v1beta2', group: ResourceGroup.Core },
+  { kind: 'Subscription', apiVersion: 'apps.open-cluster-management.io/v1', group: ResourceGroup.Core },
+  { kind: 'Channel', apiVersion: 'apps.open-cluster-management.io/v1', group: ResourceGroup.Core },
+  { kind: 'ManagedClusterAddOn', apiVersion: 'addon.open-cluster-management.io/v1alpha1', group: ResourceGroup.Core },
+  { kind: 'PlacementDecision', apiVersion: 'cluster.open-cluster-management.io/v1alpha1', group: ResourceGroup.Core },
+  { kind: 'PlacementDecision', apiVersion: 'cluster.open-cluster-management.io/v1beta1', group: ResourceGroup.Core },
+  {
+    kind: 'ManagedClusterSetBinding',
+    apiVersion: 'cluster.open-cluster-management.io/v1beta2',
+    group: ResourceGroup.Core,
+  },
+  { kind: 'Application', apiVersion: 'app.k8s.io/v1beta1', group: ResourceGroup.Core },
+  { kind: 'ApplicationSet', apiVersion: 'argoproj.io/v1alpha1', group: ResourceGroup.Core },
+  { kind: 'HelmRelease', apiVersion: 'apps.open-cluster-management.io/v1', group: ResourceGroup.Core },
+  { kind: 'AnsibleJob', apiVersion: 'tower.ansible.com/v1alpha1', group: ResourceGroup.Core },
+  { kind: 'Application', apiVersion: 'argoproj.io/v1alpha1', group: ResourceGroup.Core },
+  {
+    kind: 'ClusterManagementAddOn',
+    apiVersion: 'addon.open-cluster-management.io/v1alpha1',
+    group: ResourceGroup.Core,
+  },
+  { kind: 'ManagedClusterInfo', apiVersion: 'internal.open-cluster-management.io/v1beta1', group: ResourceGroup.Core },
+  { kind: 'Subscription', apiVersion: 'operators.coreos.com/v1alpha1', group: ResourceGroup.Core },
+  { kind: 'DiscoveryConfig', apiVersion: 'discovery.open-cluster-management.io/v1', group: ResourceGroup.Core },
+  { kind: 'PolicyReport', apiVersion: 'wgpolicyk8s.io/v1alpha2', group: ResourceGroup.Core },
+
+  // Resources used only in the Infrastructure section of the console
+  { kind: 'Agent', apiVersion: 'agent-install.openshift.io/v1beta1', group: ResourceGroup.Infrastructure },
+  { kind: 'ClusterImageSet', apiVersion: 'hive.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  { kind: 'InfraEnv', apiVersion: 'agent-install.openshift.io/v1beta1', group: ResourceGroup.Infrastructure },
+  { kind: 'HostedCluster', apiVersion: 'hypershift.openshift.io/v1beta1', group: ResourceGroup.Infrastructure },
+  { kind: 'ClusterDeployment', apiVersion: 'hive.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  {
+    kind: 'AgentClusterInstall',
+    apiVersion: 'extensions.hive.openshift.io/v1beta1',
+    group: ResourceGroup.Infrastructure,
+  },
+  { kind: 'NodePool', apiVersion: 'hypershift.openshift.io/v1beta1', group: ResourceGroup.Infrastructure },
+  {
+    kind: 'AgentMachine',
+    apiVersion: 'capi-provider.agent-install.openshift.io/v1alpha1',
+    group: ResourceGroup.Infrastructure,
+  },
+  { kind: 'ClusterClaim', apiVersion: 'hive.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  { kind: 'MultiClusterEngine', apiVersion: 'multicluster.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  {
+    kind: 'CertificateSigningRequest',
+    apiVersion: 'certificates.k8s.io/v1',
+    group: ResourceGroup.Infrastructure,
+    labelSelector: { 'open-cluster-management.io/cluster-name': '' },
+  },
+  { kind: 'ClusterPool', apiVersion: 'hive.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  { kind: 'Infrastructure', apiVersion: 'config.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  { kind: 'MachinePool', apiVersion: 'hive.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  { kind: 'NMStateConfig', apiVersion: 'agent-install.openshift.io/v1beta1', group: ResourceGroup.Infrastructure },
+  { kind: 'ClusterProvision', apiVersion: 'hive.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  {
+    kind: 'DiscoveredCluster',
+    apiVersion: 'discovery.open-cluster-management.io/v1',
+    group: ResourceGroup.Infrastructure,
+  },
+  {
+    kind: 'SubmarinerConfig',
+    apiVersion: 'submarineraddon.open-cluster-management.io/v1alpha1',
+    group: ResourceGroup.Infrastructure,
+  },
+  { kind: 'AgentServiceConfig', apiVersion: 'agent-install.openshift.io/v1beta1', group: ResourceGroup.Infrastructure },
+  { kind: 'BareMetalHost', apiVersion: 'metal3.io/v1alpha1', group: ResourceGroup.Infrastructure },
+  { kind: 'ClusterVersion', apiVersion: 'config.openshift.io/v1', group: ResourceGroup.Infrastructure },
+  { kind: 'StorageClass', apiVersion: 'storage.k8s.io/v1', group: ResourceGroup.Infrastructure },
+
+  // Resources used only in the Applications section of the console
+  { kind: 'GitOpsCluster', apiVersion: 'apps.open-cluster-management.io/v1beta1', group: ResourceGroup.Applications },
+  { kind: 'ArgoCD', apiVersion: 'argoproj.io/v1alpha1', group: ResourceGroup.Applications },
+  {
+    kind: 'MulticlusterApplicationSetReport',
+    apiVersion: 'apps.open-cluster-management.io/v1alpha1',
+    group: ResourceGroup.Applications,
+  },
+  {
+    kind: 'SubscriptionReport',
+    apiVersion: 'apps.open-cluster-management.io/v1alpha1',
+    group: ResourceGroup.Applications,
+  },
+
+  // Resources used only in the Governance section of the console
+  { kind: 'PolicySet', apiVersion: 'policy.open-cluster-management.io/v1beta1', group: ResourceGroup.Governance },
+  { kind: 'Policy', apiVersion: 'policy.open-cluster-management.io/v1', group: ResourceGroup.Governance },
+  {
+    kind: 'PolicyAutomation',
+    apiVersion: 'policy.open-cluster-management.io/v1beta1',
+    group: ResourceGroup.Governance,
+  },
+  { kind: 'PlacementBinding', apiVersion: 'policy.open-cluster-management.io/v1', group: ResourceGroup.Governance },
 ]
 
 export function startWatching(): void {
@@ -132,13 +220,6 @@ export function startWatching(): void {
   for (const definition of definitions) {
     void listAndWatch(definition)
   }
-}
-
-interface IWatchOptions {
-  apiVersion: string
-  kind: string
-  labelSelector?: Record<string, string>
-  fieldSelector?: Record<string, string>
 }
 
 // https://kubernetes.io/docs/reference/using-api/api-concepts/
