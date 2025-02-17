@@ -221,7 +221,7 @@ export default function DetailsPage() {
                 action.action.toLowerCase(),
                 isHubClusterResource ? action.hubPath : action.managedPath,
                 { cluster, name, namespace },
-                () => setResourceVersion(''), // trigger resource refetchto update details page data.
+                () => setResourceVersion(''), // trigger resource hh refetchto update details page data.
                 toast,
                 t
               )
