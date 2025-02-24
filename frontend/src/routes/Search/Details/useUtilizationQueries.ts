@@ -41,17 +41,29 @@ export const useUtilizationQueries: UseUtilizationQueries = (prometheusQueries, 
           query = `sum(rate(kubevirt_vmi_cpu_usage_seconds_total{${filter}}[${duration}])) BY (cluster, name, namespace)`
           break
         case VMQueries.CPU_REQUESTED:
-          query = `sum by (cluster, namespace, name, node)(last_over_time(kubevirt_vm_resource_requests{${filter}, resource="cpu", unit="cores"}[${duration}])) *
-          sum by (cluster, namespace, name, node)(last_over_time(kubevirt_vm_resource_requests{${filter}, resource="cpu", unit="threads"}[${duration}])) *
-          sum by (cluster, namespace, name, node)(last_over_time(kubevirt_vm_resource_requests{${filter}, resource="cpu", unit="sockets"}[${duration}]))`
+          query = `sum by (cluster, namespace, name) ((last_over_time(kubevirt_vm_resource_requests{${filter},resource="cpu", unit="cores"}[${duration}])) 
+          * ignoring(unit) (last_over_time(kubevirt_vm_resource_requests{${filter}, resource="cpu", unit="sockets"}[${duration}])) 
+          * ignoring(unit) (last_over_time(kubevirt_vm_resource_requests{${filter}, resource="cpu", unit="threads"}[${duration}])))`
           break
         case VMQueries.FILESYSTEM_USAGE_TOTAL:
           query = `sum by (name, namespace, cluster)(rate(kubevirt_vmi_storage_iops_read_total{${filter}}[${duration}])) + 
             sum by (name, namespace, cluster)(rate(kubevirt_vmi_storage_iops_write_total{${filter}}[${duration}]))`
           break
+        case VMQueries.NETWORK_OUT_USAGE:
+          query = `sum by (cluster, namespace, name, node)(kubevirt_vmi_network_receive_bytes_total{${filter}})`
+          break
+        case VMQueries.NETWORK_IN_USAGE:
+          query = `sum by (cluster, namespace, name, node)(kubevirt_vmi_network_transmit_bytes_total{${filter}})`
+          break
         default:
+          // for Prometheus queries, try just adding cluster label
+          // add cluster label to filter ex: metric_name{.., cluster='myCluster'}
           query = prometheusQueries[key]?.replace(/\{([^}]+)\}/g, (_, key) => {
             return `{${key},cluster='${cluster}'}`
+          })
+          // add cluster to Aggregation operators that use "by (label list)"
+          query = query.replace(/\(([^}]+)\)/g, (_, key) => {
+            return `{${key}, cluster}`
           })
       }
       queries[key] = query
