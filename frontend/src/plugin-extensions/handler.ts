@@ -9,6 +9,7 @@ import {
 } from './extensions'
 import { ActionExtensionProps, ListColumnExtensionProps } from './properties'
 import { AcmExtension } from './types'
+import { isResourceRoute } from '@stolostron/multicluster-sdk'
 
 // Type guards
 export function useAcmExtension() {
@@ -46,6 +47,12 @@ export function useAcmExtension() {
     acmExtension.virtualMachineListColumn = virtualMachineListColumn.map(
       (column) => column.properties as ListColumnExtensionProps
     )
+  }
+
+  // Resolve resource details extensions
+  const [resourceRoutes, resolvedResourceRoutes] = useResolvedExtensions(isResourceRoute)
+  if (resolvedResourceRoutes) {
+    acmExtension.resourceRoutes = resourceRoutes.map((resolvedDetails) => resolvedDetails.properties)
   }
 
   // list of all acm supported extensions
