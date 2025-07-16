@@ -6,7 +6,7 @@ import { ButtonProps, Icon, Label, Popover, Text, TextContent, TextVariants } fr
 import { CheckCircleIcon, ExclamationCircleIcon, ExternalLinkAltIcon } from '@patternfly/react-icons'
 import _ from 'lodash'
 import queryString from 'query-string'
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { TFunction } from 'react-i18next'
 import { generatePath, Link } from 'react-router-dom-v5-compat'
 import { useTranslation } from '../../lib/acm-i18next'
@@ -16,6 +16,7 @@ import { ConfigMap } from '../../resources'
 import { useRecoilValue, useSharedAtoms } from '../../shared-recoil'
 import { AcmButton, AcmLabels } from '../../ui-components'
 import { useAllClusters } from '../Infrastructure/Clusters/ManagedClusters/components/useAllClusters'
+import { PluginContext } from '../../lib/PluginContext'
 export interface ResourceDefinitions {
   application: Record<'columns', SearchColumnDefinition[]>
   cluster: Record<'columns', SearchColumnDefinition[]>
@@ -556,12 +557,28 @@ export const GetUrlSearchParam = (resource: any) => {
 export function CreateDetailsLink(props: Readonly<{ item: any }>) {
   const { item } = props
 
+  const { cluster = '', name = '', namespace = '', apigroup: group = '', apiversion: version = '', kind = '' } = item
+
+  const { acmExtensions } = useContext(PluginContext)
+
+  // Find matching ResourceRoute extension, first checking for one with matching version, but falling back to a version-agnostic match
+  const resourceRouteHandler = (
+    acmExtensions?.resourceRoutes?.find(
+      ({ model }) => model.group === group && model.kind === kind && model.version === version
+    ) ||
+    acmExtensions?.resourceRoutes?.find(({ model }) => model.group === group && model.kind === kind && !model.version)
+  )?.handler
+
   const defaultSearchLink = (
     <Link
-      to={{
-        pathname: NavigationPath.resources,
-        search: GetUrlSearchParam(item),
-      }}
+      to={
+        resourceRouteHandler
+          ? resourceRouteHandler({ cluster, name, namespace, resource: item, model: { group, version, kind } })
+          : {
+              pathname: NavigationPath.resources,
+              search: GetUrlSearchParam(item),
+            }
+      }
       state={{
         from: NavigationPath.search,
         fromSearch: window.location.search,
