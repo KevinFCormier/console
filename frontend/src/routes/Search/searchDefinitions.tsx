@@ -9,6 +9,7 @@ import queryString from 'query-string'
 import { useMemo } from 'react'
 import { TFunction } from 'react-i18next'
 import { generatePath, Link } from 'react-router-dom-v5-compat'
+
 import { useTranslation } from '../../lib/acm-i18next'
 import AcmTimestamp from '../../lib/AcmTimestamp'
 import { NavigationPath } from '../../NavigationPath'
@@ -16,6 +17,7 @@ import { ConfigMap } from '../../resources'
 import { useRecoilValue, useSharedAtoms } from '../../shared-recoil'
 import { AcmButton, AcmLabels } from '../../ui-components'
 import { useAllClusters } from '../Infrastructure/Clusters/ManagedClusters/components/useAllClusters'
+
 export interface ResourceDefinitions {
   application: Record<'columns', SearchColumnDefinition[]>
   cluster: Record<'columns', SearchColumnDefinition[]>
@@ -644,7 +646,7 @@ export function CreateGlobalSearchDetailsLink(props: { item: any }) {
 
   const managedHub = clusters.find((cluster) => {
     if (item.managedHub === 'global-hub') {
-      // If the resource lives on a managed hub (managed by global hub) use the cluster name
+      // if the resource lives on a managed hub (managed by global hub) use the cluster name
       return cluster.name === item.cluster
     }
     return cluster.name === item.managedHub
@@ -674,6 +676,23 @@ export function CreateGlobalSearchDetailsLink(props: { item: any }) {
     }
   }
 
+  const getLinkType = (isHubClusterResource?: boolean) => {
+    if (item.managedHub === 'global-hub' && !isHubClusterResource) {
+      return 'external'
+    }
+    return 'internal'
+  }
+
+  const generateDefaultSearchLink = () => {
+    return generateLink(
+      item.managedHub !== 'global-hub' ? 'external' : 'internal',
+      NavigationPath.resources,
+      GetUrlSearchParam(item)
+    )
+  }
+
+  // helper function for VirtualMachine resource linking in global search
+
   switch (item.kind.toLowerCase()) {
     case 'cluster':
     case 'managedcluster': {
@@ -698,16 +717,9 @@ export function CreateGlobalSearchDetailsLink(props: { item: any }) {
           applicationset: applicationSet ?? undefined,
         })
         const path = generatePath(NavigationPath.applicationOverview, { namespace, name })
-        if (item.managedHub === 'global-hub' && !item._hubClusterResource) {
-          return generateLink('external', path, `?${params}`)
-        }
-        return generateLink('internal', path, `?${params}`)
+        return generateLink(getLinkType(item._hubClusterResource), path, `?${params}`)
       }
-      return generateLink(
-        item.managedHub === 'global-hub' && !item._hubClusterResource ? 'external' : 'internal',
-        NavigationPath.resources,
-        GetUrlSearchParam(item)
-      )
+      return generateLink(getLinkType(item._hubClusterResource), NavigationPath.resources, GetUrlSearchParam(item))
     }
     case 'policy': {
       if (
@@ -715,26 +727,21 @@ export function CreateGlobalSearchDetailsLink(props: { item: any }) {
         !item.label?.includes('policy.open-cluster-management.io/root-policy')
       ) {
         const path = generatePath(NavigationPath.policyDetails, { name: item.name, namespace: item.namespace })
-        return item._hubClusterResource ? generateLink('internal', path) : generateLink('external', path)
+        return generateLink(getLinkType(item._hubClusterResource), path)
       }
-      return generateLink(
-        item.managedHub !== 'global-hub' && !item._hubClusterResource ? 'external' : 'internal',
-        NavigationPath.resources,
-        GetUrlSearchParam(item)
-      )
+      return generateLink(getLinkType(item._hubClusterResource), NavigationPath.resources, GetUrlSearchParam(item))
     }
     case 'policyreport': {
       const path = generatePath(NavigationPath.clusterOverview, { name: item.namespace, namespace: item.namespace })
       return generateLink(
-        item.managedHub === 'global-hub' && !item._hubClusterResource ? 'external' : 'internal',
+        getLinkType(item._hubClusterResource),
         path,
         `?${encodeURIComponent('showClusterIssues=true')}`
       )
     }
+
     default: {
-      const searchLink = generateLink('internal', NavigationPath.resources, GetUrlSearchParam(item))
-      const externalLink = generateLink('external', NavigationPath.resources, GetUrlSearchParam(item))
-      return item.managedHub !== 'global-hub' ? externalLink : searchLink
+      return generateDefaultSearchLink()
     }
   }
 }
