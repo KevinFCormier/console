@@ -136,9 +136,6 @@ const virtualMachinesRoute: EncodedExtension<RoutePage> = {
     component: { $codeRef: 'virtualmachines.default' },
     perspective: 'acm',
   },
-  flags: {
-    disallowed: ['KUBEVIRT_DYNAMIC_ACM'],
-  },
 }
 
 // Virtual Machines Role Assignments Route - type: 'console.page/route'
