@@ -1,5 +1,14 @@
 /* Copyright Contributors to the Open Cluster Management project */
-import { ButtonVariant, PageSection } from '@patternfly/react-core'
+import {
+  ButtonVariant,
+  NumberInput,
+  NumberInputProps,
+  PageSection,
+  Split,
+  SplitItem,
+  Stack,
+  StackItem,
+} from '@patternfly/react-core'
 import { fitContent } from '@patternfly/react-table'
 import {
   AcmButton,
@@ -13,7 +22,7 @@ import {
   Provider,
   ProviderLongTextMap,
 } from '../../ui-components'
-import { Fragment, useMemo, useState } from 'react'
+import { Fragment, useCallback, useMemo, useState } from 'react'
 import { Link, generatePath, useNavigate } from 'react-router-dom-v5-compat'
 import { useRecoilValue, useSharedAtoms } from '../../shared-recoil'
 import { BulkActionModal, BulkActionModalProps } from '../../components/BulkActionModal'
@@ -31,6 +40,118 @@ import {
 } from '../../resources'
 import { deleteResource, getISOStringTimestamp } from '../../resources/utils'
 import AcmTimestamp from '../../lib/AcmTimestamp'
+import {
+  FleetK8sResourceCommon,
+  useFleetK8sWatchResource,
+  useFleetK8sWatchResourceOld,
+} from '@stolostron/multicluster-sdk'
+
+const CM_NAME = 'kevin-test'
+const CM_NAMESPACE = 'default'
+const CLUSTER_NAME = 'virt-spoke'
+const HUB_NAME = 'virt-hub'
+
+function ValueDisplay(props: { text: string; value?: string; cluster?: string; loaded: boolean; error?: any }) {
+  const { text, value, cluster, loaded, error } = props
+  return (
+    <dl>
+      <dt>
+        <b>{text}</b>
+      </dt>
+      <dd>
+        {value} ({cluster}) / {loaded ? 'true' : 'false'} / {error ? error.toString() : ''}
+      </dd>
+    </dl>
+  )
+}
+
+function ConfigMapDisplayComponentOld() {
+  const [result, loaded, error] = useFleetK8sWatchResourceOld<FleetK8sResourceCommon & { data: { value: string } }>({
+    cluster: CLUSTER_NAME,
+    groupVersionKind: { kind: 'ConfigMap', version: 'v1' },
+    name: 'kevin-test',
+    namespace: CM_NAMESPACE,
+  })
+  const cluster = result?.cluster
+  const value = result?.data?.value
+  return (
+    <ValueDisplay text="Managed Secret Value [OLD]" value={value} cluster={cluster} loaded={loaded} error={error} />
+  )
+}
+
+function ConfigMapDisplayComponent() {
+  const [result, loaded, error] = useFleetK8sWatchResource<FleetK8sResourceCommon & { data: { value: string } }>({
+    cluster: CLUSTER_NAME,
+    groupVersionKind: { kind: 'ConfigMap', version: 'v1' },
+    name: CM_NAME,
+    namespace: CM_NAMESPACE,
+  })
+  const cluster = result?.cluster
+  const value = result?.data?.value
+  return <ValueDisplay text="Managed Secret Value" value={value} cluster={cluster} loaded={loaded} error={error} />
+}
+
+function ConfigMapDisplayComponentList() {
+  const [result, loaded, error] = useFleetK8sWatchResource<(FleetK8sResourceCommon & { data: { value: string } })[]>({
+    cluster: CLUSTER_NAME,
+    groupVersionKind: { kind: 'ConfigMap', version: 'v1' },
+    namespace: CM_NAMESPACE,
+    isList: true,
+  })
+  const kevinTest = result?.find((r) => r?.metadata?.name === CM_NAME)
+  const cluster = kevinTest?.cluster
+  const value = kevinTest?.data.value ?? ''
+  return (
+    <ValueDisplay
+      text="Managed Secret Value (from list)"
+      value={value}
+      cluster={cluster}
+      loaded={loaded}
+      error={error}
+    />
+  )
+}
+
+function ConfigMapDisplayComponentHub() {
+  const [result, loaded, error] = useFleetK8sWatchResource<FleetK8sResourceCommon & { data: { value: string } }>({
+    cluster: HUB_NAME,
+    groupVersionKind: { kind: 'ConfigMap', version: 'v1' },
+    name: CM_NAME,
+    namespace: CM_NAMESPACE,
+  })
+  const cluster = result?.cluster
+  const value = result?.data?.value
+  return <ValueDisplay text="Hub Secret Value" value={value} cluster={cluster} loaded={loaded} error={error} />
+}
+
+function MultiComponent(props: { component: React.FC }) {
+  const { component: Component } = props
+  const [value, setValue] = useState(3)
+  const onMinus = useCallback(() => setValue((value) => (value > 0 ? value - 1 : 0)), [])
+  const onPlus = useCallback(() => setValue((value) => value + 1), [])
+  const onChange = useCallback<NonNullable<NumberInputProps['onChange']>>((event) => {
+    const newValue = Number.parseInt((event.target as HTMLInputElement).value, 10)
+    if (Number.isInteger(newValue) && newValue >= 0) {
+      setValue(newValue)
+    }
+  }, [])
+  const keys = new Array(value)
+  for (let i = 0; i < value; i++) {
+    keys[i] = i + 1
+  }
+  return (
+    <Stack>
+      <StackItem>
+        <NumberInput value={value} onMinus={onMinus} onPlus={onPlus} onChange={onChange} />
+      </StackItem>
+      {keys.map((k) => (
+        <StackItem key={`item-${k}`}>
+          <Component />
+        </StackItem>
+      ))}
+    </Stack>
+  )
+}
 
 export default function CredentialsPage() {
   const { secretsState, discoveryConfigState } = useSharedAtoms()
@@ -51,6 +172,21 @@ export default function CredentialsPage() {
     <AcmPage header={<AcmPageHeader title={t('Credentials')} />}>
       <AcmPageContent id="credentials">
         <PageSection>
+          <Split hasGutter>
+            <SplitItem>
+              <MultiComponent component={ConfigMapDisplayComponentOld} />
+            </SplitItem>
+            <SplitItem>
+              <MultiComponent component={ConfigMapDisplayComponent} />
+            </SplitItem>
+            <SplitItem>
+              <MultiComponent component={ConfigMapDisplayComponentList} />
+            </SplitItem>
+            <SplitItem>
+              <MultiComponent component={ConfigMapDisplayComponentHub} />
+            </SplitItem>
+          </Split>
+
           <CredentialsTable
             providerConnections={providerConnections}
             discoveryConfigs={discoveryConfigs}
