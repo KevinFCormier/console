@@ -7,6 +7,8 @@ import { RecoilRoot } from 'recoil'
 import { PluginData, PluginDataContext } from '../lib/PluginDataContext'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { FleetK8sWatchResourceStoreViewer } from '@stolostron/multicluster-sdk/lib/internal/components/FleetK8sWatchResourceStoreViewer'
+import { Banner } from '@patternfly/react-core'
 
 const queryClient = new QueryClient()
 
@@ -15,6 +17,9 @@ export const PluginDataContextProvider = (props: ProviderProps<PluginData>) => {
     <PluginDataContext.Provider value={props.value}>
       <RecoilRoot>
         <QueryClientProvider client={queryClient}>
+          <Banner color="green">
+            <FleetK8sWatchResourceStoreViewer />
+          </Banner>
           {props.value.startLoading ? <LoadData>{props.children}</LoadData> : props.children}
           {process.env.DEBUG_EVENT_STREAM_IDLE === 'true' && <EventStreamIdleDebugPanel />}
         </QueryClientProvider>
