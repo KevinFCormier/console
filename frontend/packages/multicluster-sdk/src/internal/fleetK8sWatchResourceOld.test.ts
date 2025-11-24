@@ -1,7 +1,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
-import { handleWebsocketEvent } from './fleetK8sWatchResource'
-import { useFleetK8sWatchResourceStore } from './fleetK8sWatchResourceStore'
+import { handleWebsocketEventOld } from './fleetK8sWatchResourceOld'
+import { useFleetK8sWatchResourceStoreOld } from './fleetK8sWatchResourceStoreOld'
 import type { K8sResourceCommon } from '@openshift-console/dynamic-plugin-sdk'
 
 // Mock console methods
@@ -11,12 +11,12 @@ const mockConsoleWarn = jest.fn()
 beforeEach(() => {
   console.warn = mockConsoleWarn
   mockConsoleWarn.mockClear()
-  useFleetK8sWatchResourceStore.getState().clearAll()
+  useFleetK8sWatchResourceStoreOld.getState().clearAll()
 })
 
 afterEach(() => {
   console.warn = originalConsoleWarn
-  useFleetK8sWatchResourceStore.getState().clearAll()
+  useFleetK8sWatchResourceStoreOld.getState().clearAll()
 })
 
 describe('handleWebsocketEvent', () => {
@@ -37,9 +37,9 @@ describe('handleWebsocketEvent', () => {
       }),
     }
 
-    handleWebsocketEvent(event, mockRequestPath, false, mockCluster)
+    handleWebsocketEventOld(event, mockRequestPath, false, mockCluster)
 
-    const store = useFleetK8sWatchResourceStore.getState()
+    const store = useFleetK8sWatchResourceStoreOld.getState()
     const cachedData = store.getResource(mockRequestPath)
 
     expect(cachedData?.data).toEqual({
@@ -63,7 +63,7 @@ describe('handleWebsocketEvent', () => {
     }
 
     // Setup initial list
-    const store = useFleetK8sWatchResourceStore.getState()
+    const store = useFleetK8sWatchResourceStoreOld.getState()
     store.setResource(mockRequestPath, [{ cluster: mockCluster, ...mockPod1 }], true)
 
     // Add second pod
@@ -74,7 +74,7 @@ describe('handleWebsocketEvent', () => {
       }),
     }
 
-    handleWebsocketEvent(addEvent, mockRequestPath, true, mockCluster)
+    handleWebsocketEventOld(addEvent, mockRequestPath, true, mockCluster)
 
     let cachedData = store.getResource<K8sResourceCommon[]>(mockRequestPath)
     expect(cachedData?.data).toHaveLength(2)
@@ -88,7 +88,7 @@ describe('handleWebsocketEvent', () => {
       }),
     }
 
-    handleWebsocketEvent(deleteEvent, mockRequestPath, true, mockCluster)
+    handleWebsocketEventOld(deleteEvent, mockRequestPath, true, mockCluster)
 
     cachedData = store.getResource<K8sResourceCommon[]>(mockRequestPath)
     expect(cachedData?.data).toHaveLength(1)
@@ -97,7 +97,7 @@ describe('handleWebsocketEvent', () => {
 
   it('should handle invalid events gracefully', () => {
     // Test undefined event
-    handleWebsocketEvent(undefined, mockRequestPath, false, mockCluster)
+    handleWebsocketEventOld(undefined, mockRequestPath, false, mockCluster)
     expect(mockConsoleWarn).toHaveBeenCalledWith('Received undefined event', undefined)
 
     // Test event without object
@@ -105,9 +105,9 @@ describe('handleWebsocketEvent', () => {
       data: JSON.stringify({ type: 'ADDED' }),
     }
 
-    handleWebsocketEvent(eventWithoutObject, mockRequestPath, false, mockCluster)
+    handleWebsocketEventOld(eventWithoutObject, mockRequestPath, false, mockCluster)
 
-    const store = useFleetK8sWatchResourceStore.getState()
+    const store = useFleetK8sWatchResourceStoreOld.getState()
     expect(store.getResource(mockRequestPath)).toBeUndefined()
   })
 })

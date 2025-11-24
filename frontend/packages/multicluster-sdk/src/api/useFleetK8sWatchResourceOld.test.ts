@@ -27,7 +27,7 @@ jest.mock('./useHubClusterName', () => ({
 let mockResourceCache: any = {}
 let mockSocketCache: any = {}
 
-jest.mock('../internal/fleetK8sWatchResourceStore', () => {
+jest.mock('../internal/fleetK8sWatchResourceStoreOld', () => {
   const mockStore = {
     get resourceCache() {
       return mockResourceCache
@@ -70,8 +70,8 @@ jest.mock('../internal/fleetK8sWatchResourceStore', () => {
   ;(mockUseStore as any).getState = jest.fn(() => mockStore)
 
   return {
-    useFleetK8sWatchResourceStore: mockUseStore,
-    useFleetK8sCache: jest.fn(() => {
+    useFleetK8sWatchResourceStoreOld: mockUseStore,
+    useFleetK8sCacheOld: jest.fn(() => {
       // Get the current mock store dynamically
       const currentStore = mockUseStore()
       return {
@@ -81,7 +81,7 @@ jest.mock('../internal/fleetK8sWatchResourceStore', () => {
         setCacheTTL: jest.fn(),
       }
     }),
-    getCacheKey: jest.fn(
+    getCacheKeyOld: jest.fn(
       (params) =>
         `${params.cluster}|${params.model?.apiGroup}|${params.model?.apiVersion}|${params.model?.kind}|${params.namespace}|${params.name}`
     ),
@@ -95,8 +95,8 @@ import { useFleetK8sAPIPath } from './useFleetK8sAPIPath'
 import { buildResourceURL, fleetWatch } from '../internal/apiRequests'
 import { useIsFleetAvailable } from './useIsFleetAvailable'
 import { useHubClusterName } from './useHubClusterName'
-import { useFleetK8sWatchResource } from './useFleetK8sWatchResource'
-import { useFleetK8sWatchResourceStore, useFleetK8sCache } from '../internal/fleetK8sWatchResourceStore'
+import { useFleetK8sWatchResourceOld } from './useFleetK8sWatchResourceOld'
+import { useFleetK8sWatchResourceStoreOld, useFleetK8sCacheOld } from '../internal/fleetK8sWatchResourceStoreOld'
 
 const mockUseK8sModel = useK8sModel as jest.MockedFunction<typeof useK8sModel>
 const mockUseK8sWatchResource = useK8sWatchResource as jest.MockedFunction<typeof useK8sWatchResource>
@@ -106,8 +106,8 @@ const mockFleetWatch = fleetWatch as jest.MockedFunction<typeof fleetWatch>
 const mockBuildResourceURL = buildResourceURL as jest.MockedFunction<typeof buildResourceURL>
 const mockUseIsFleetAvailable = useIsFleetAvailable as jest.MockedFunction<typeof useIsFleetAvailable>
 const mockedUseHubClusterName = useHubClusterName as jest.MockedFunction<typeof useHubClusterName>
-const mockUseFleetK8sWatchResourceStore = useFleetK8sWatchResourceStore as jest.MockedFunction<
-  typeof useFleetK8sWatchResourceStore
+const mockUseFleetK8sWatchResourceStore = useFleetK8sWatchResourceStoreOld as jest.MockedFunction<
+  typeof useFleetK8sWatchResourceStoreOld
 >
 
 // Mock WebSocket
@@ -209,7 +209,7 @@ describe('useFleetK8sWatchResource', () => {
       const mockData = [{ metadata: { name: 'pod1' } }]
       mockUseK8sWatchResource.mockReturnValue([mockData, true, undefined])
 
-      const { result } = renderHook(() => useFleetK8sWatchResource(initResource))
+      const { result } = renderHook(() => useFleetK8sWatchResourceOld(initResource))
 
       // Should call useK8sWatchResource with the correct resource
       expect(mockUseK8sWatchResource).toHaveBeenCalledWith({
@@ -229,7 +229,7 @@ describe('useFleetK8sWatchResource', () => {
       const mockData = [{ metadata: { name: 'pod1' } }]
       mockUseK8sWatchResource.mockReturnValue([mockData, true, undefined])
 
-      const { result } = renderHook(() => useFleetK8sWatchResource(initResource))
+      const { result } = renderHook(() => useFleetK8sWatchResourceOld(initResource))
 
       expect(mockUseK8sWatchResource).toHaveBeenCalledWith({
         groupVersionKind: { version: 'v1', kind: 'Pod' },
@@ -274,7 +274,7 @@ describe('useFleetK8sWatchResource', () => {
         }
       })
 
-      const { result, rerender } = renderHook(() => useFleetK8sWatchResource(initResource))
+      const { result, rerender } = renderHook(() => useFleetK8sWatchResourceOld(initResource))
 
       // Initially should be empty and not loaded
       expect(result.current[0]).toEqual([])
@@ -336,7 +336,7 @@ describe('useFleetK8sWatchResource', () => {
 
       // Reset and set new mock value for this test
       mockConsoleFetchJSON.mockReturnValueOnce(Promise.resolve(mockFetchData))
-      const { result, rerender } = renderHook(() => useFleetK8sWatchResource(singleResourceInit))
+      const { result, rerender } = renderHook(() => useFleetK8sWatchResourceOld(singleResourceInit))
 
       // Initially should be undefined and not loaded
       expect(result.current[0]).toBeUndefined()
@@ -393,7 +393,7 @@ describe('useFleetK8sWatchResource', () => {
 
       // Reset and set new mock value for this test
       mockConsoleFetchJSON.mockReturnValueOnce(Promise.resolve(mockFetchData))
-      const { result, rerender } = renderHook(() => useFleetK8sWatchResource(singleResourceInit))
+      const { result, rerender } = renderHook(() => useFleetK8sWatchResourceOld(singleResourceInit))
 
       // Wait for the fetch to be called
       await waitFor(() => {
@@ -423,11 +423,11 @@ describe('useFleetK8sWatchResource', () => {
     it('should not fetch if backend path is not loaded', () => {
       mockUseFleetK8sAPIPath.mockReturnValue([mockFleetAPIUrl, false, undefined])
 
-      const { result } = renderHook(() => useFleetK8sWatchResource(initResource))
+      const { result } = renderHook(() => useFleetK8sWatchResourceOld(initResource))
 
       expect(mockConsoleFetchJSON).not.toHaveBeenCalled()
       expect(result.current[1]).toBe(false)
-      useFleetK8sCache().clearAll()
+      useFleetK8sCacheOld().clearAll()
     })
 
     it('should handle WebSocket ADD, MODIFY, and DELETE events for live updating', async () => {
@@ -502,7 +502,7 @@ describe('useFleetK8sWatchResource', () => {
       mockedUseHubClusterName.mockReturnValue([hubClusterName, true, undefined])
 
       // Re-setup useFleetK8sCache mock after jest.resetAllMocks()
-      const mockUseFleetK8sCache = useFleetK8sCache as jest.MockedFunction<typeof useFleetK8sCache>
+      const mockUseFleetK8sCache = useFleetK8sCacheOld as jest.MockedFunction<typeof useFleetK8sCacheOld>
       mockUseFleetK8sCache.mockImplementation(() => ({
         clearExpired: mockStore.clearExpired,
         clearAll: mockStore.clearAll,
@@ -519,7 +519,7 @@ describe('useFleetK8sWatchResource', () => {
       const mockData = [{ metadata: { name: 'pod1' } }]
       mockUseK8sWatchResource.mockReturnValue([mockData, true, undefined])
 
-      const { result, rerender } = renderHook(() => useFleetK8sWatchResource(initResource))
+      const { result, rerender } = renderHook(() => useFleetK8sWatchResourceOld(initResource))
 
       // Wait for the fetch to be called
       await waitFor(() => {
@@ -597,11 +597,11 @@ describe('useFleetK8sWatchResource', () => {
       expect(result.current[0]).toEqual([
         { metadata: { name: 'pod2', uid: 'uid2' }, spec: { foo: 'bar' }, cluster: remoteClusterName },
       ])
-      useFleetK8sCache().clearAll()
+      useFleetK8sCacheOld().clearAll()
     })
 
     it('should not call consoleFetch if initResource is null', () => {
-      const { result } = renderHook(() => useFleetK8sWatchResource(null))
+      const { result } = renderHook(() => useFleetK8sWatchResourceOld(null))
 
       expect(result.current[0]).toBeUndefined()
       expect(result.current[1]).toBe(false)
