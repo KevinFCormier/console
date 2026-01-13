@@ -1,5 +1,5 @@
 /* Copyright Contributors to the Open Cluster Management project */
-import { ButtonVariant, PageSection } from '@patternfly/react-core'
+import { ButtonVariant, PageSection, Split, SplitItem } from '@patternfly/react-core'
 import { fitContent } from '@patternfly/react-table'
 import {
   AcmButton,
@@ -31,6 +31,7 @@ import {
 } from '../../resources'
 import { deleteResource, getISOStringTimestamp } from '../../resources/utils'
 import AcmTimestamp from '../../lib/AcmTimestamp'
+import { useFleetClusterNames, useFleetClusterSetNames, useFleetClusterSets } from '@stolostron/multicluster-sdk'
 
 export default function CredentialsPage() {
   const { secretsState, discoveryConfigState } = useSharedAtoms()
@@ -47,9 +48,103 @@ export default function CredentialsPage() {
   const providerConnections = secrets.map(unpackProviderConnection)
   const discoveryConfigs = useRecoilValue(discoveryConfigState)
 
+  const fleetClusterNames = useFleetClusterNames()
+  const fleetClusterSetNames = useFleetClusterSetNames()
+  const fleetClusterSets = useFleetClusterSets({ includeGlobal: true })
+
+  const fleetClusterNamesAll = useFleetClusterNames(true)
+  const fleetClusterSetNamesAll = useFleetClusterSetNames(true)
+  const fleetClusterSetsAll = useFleetClusterSets({ returnAllClusters: true })
+
+  const fleetClusterSetsUnconfigured = useFleetClusterSets({
+    clusterSets: ['unconfigured'],
+  })
+  const fleetClusterSetsTwoSets = useFleetClusterSets({
+    returnAllClusters: true,
+    clusterSets: ['unconfigured', 'hosted'],
+  })
+  const fleetClusterSetsGlobal = useFleetClusterSets({
+    includeGlobal: true,
+    returnAllClusters: true,
+    clusterSets: ['unconfigured', 'default'],
+  })
+
   return (
     <AcmPage header={<AcmPageHeader title={t('Credentials')} />}>
       <AcmPageContent id="credentials">
+        <PageSection variant="secondary">
+          <Split>
+            <SplitItem>
+              <dl>
+                <dt>
+                  <b>useFleetClusterNames()</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterNames, null, 2)}</pre>
+                </dd>
+                <dt>
+                  <b>useFleetClusterSetNames()</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterSetNames, null, 2)}</pre>
+                </dd>
+                <dt>
+                  <b>useFleetClusterSets({'{ includeGlobal: true }'})</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterSets, null, 2)}</pre>
+                </dd>
+              </dl>
+            </SplitItem>
+            <SplitItem>
+              <dl>
+                <dt>
+                  <b>useFleetClusterNames(true)</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterNamesAll, null, 2)}</pre>
+                </dd>
+                <dt>
+                  <b>useFleetClusterSetNames(true)</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterSetNamesAll, null, 2)}</pre>
+                </dd>
+                <dt>
+                  <b>useFleetClusterSets({'{ returnAllClusters: true }'})</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterSetsAll, null, 2)}</pre>
+                </dd>
+              </dl>
+            </SplitItem>
+            <SplitItem>
+              <dl>
+                <dt>
+                  <b>useFleetClusterSets({"{ clusterSets: ['unconfigured'] }"})</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterSetsUnconfigured, null, 2)}</pre>
+                </dd>
+                <dt>
+                  <b>useFleetClusterSets({"{ returnAllClusters: true, clusterSets: ['unconfigured', 'hosted'] }"})</b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterSetsTwoSets, null, 2)}</pre>
+                </dd>
+                <dt>
+                  <b>
+                    useFleetClusterSets(
+                    {"{ includeGlobal: true, returnAllClusters: true, clusterSets: ['unconfigured', 'default'] }"})
+                  </b>
+                </dt>
+                <dd>
+                  <pre>{JSON.stringify(fleetClusterSetsGlobal, null, 2)}</pre>
+                </dd>
+              </dl>
+            </SplitItem>
+          </Split>
+        </PageSection>
         <PageSection hasBodyWrapper={false}>
           <CredentialsTable
             providerConnections={providerConnections}
