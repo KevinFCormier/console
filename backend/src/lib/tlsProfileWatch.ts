@@ -50,6 +50,8 @@ type APIServer = {
  * ```
  * oc explain apiserver.spec.tlsSecurityProfile.<lowercase-profile-name>
  * ```
+ * Or from the following code:
+ * https://github.com/openshift/api/blob/master/config/v1/types_tlssecurityprofile.go
  */
 const BUILTIN_SPECS: Record<string, { minTLSVersion: TLSVersionValue; ciphers: string[] }> = {
   Old: {
@@ -64,23 +66,15 @@ const BUILTIN_SPECS: Record<string, { minTLSVersion: TLSVersionValue; ciphers: s
       'ECDHE-RSA-AES256-GCM-SHA384',
       'ECDHE-ECDSA-CHACHA20-POLY1305',
       'ECDHE-RSA-CHACHA20-POLY1305',
-      'DHE-RSA-AES128-GCM-SHA256',
-      'DHE-RSA-AES256-GCM-SHA384',
-      'DHE-RSA-CHACHA20-POLY1305',
       'ECDHE-ECDSA-AES128-SHA256',
       'ECDHE-RSA-AES128-SHA256',
       'ECDHE-ECDSA-AES128-SHA',
       'ECDHE-RSA-AES128-SHA',
-      'ECDHE-ECDSA-AES256-SHA384',
-      'ECDHE-RSA-AES256-SHA384',
       'ECDHE-ECDSA-AES256-SHA',
       'ECDHE-RSA-AES256-SHA',
-      'DHE-RSA-AES128-SHA256',
-      'DHE-RSA-AES256-SHA256',
       'AES128-GCM-SHA256',
       'AES256-GCM-SHA384',
       'AES128-SHA256',
-      'AES256-SHA256',
       'AES128-SHA',
       'AES256-SHA',
       'DES-CBC3-SHA',
@@ -98,8 +92,6 @@ const BUILTIN_SPECS: Record<string, { minTLSVersion: TLSVersionValue; ciphers: s
       'ECDHE-RSA-AES256-GCM-SHA384',
       'ECDHE-ECDSA-CHACHA20-POLY1305',
       'ECDHE-RSA-CHACHA20-POLY1305',
-      'DHE-RSA-AES128-GCM-SHA256',
-      'DHE-RSA-AES256-GCM-SHA384',
     ],
   },
   Modern: {
