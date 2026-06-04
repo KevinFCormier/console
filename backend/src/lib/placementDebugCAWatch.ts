@@ -6,7 +6,7 @@ import { Transform } from 'node:stream'
 import { logger } from './logger'
 import { getCACertificate, getServiceAccountToken } from './serviceAccountToken'
 
-const HUB_NAMESPACE = 'open-cluster-management-hub'
+const HUB_NAMESPACE = 'multicluster-engine' // DO NOT MERGE: replace with 'open-cluster-management-hub'
 const CONFIGMAP_NAME = 'ca-bundle-configmap'
 const CA_BUNDLE_KEY = 'ca-bundle.crt'
 const API_PATH = `/api/v1/namespaces/${HUB_NAMESPACE}/configmaps`
