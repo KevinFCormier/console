@@ -13,6 +13,8 @@ import SearchIcon from './graphics/welcome-card-5-icon.svg'
 import CommunityIcon from './graphics/welcome-community-icon.svg'
 import HeaderGraphic from './graphics/Welcome-page-header.png'
 import SupportIcon from './graphics/welcome-support-icon.svg'
+import { useFleetSearch, useFleetSearchPoll } from '@stolostron/multicluster-sdk'
+import { K8sResourceCommon } from '@openshift-console/dynamic-plugin-sdk'
 
 export default function WelcomePage() {
   const { t } = useTranslation()
@@ -127,6 +129,22 @@ export default function WelcomePage() {
     [t]
   )
 
+  const [cm_polled] = useFleetSearchPoll<(K8sResourceCommon & { data: Record<string, string> })[]>({
+    groupVersionKind: { group: '', version: 'v1', kind: 'ConfigMap' },
+    namespaced: true,
+    isList: true,
+    limit: 10,
+  })
+
+  const [cm_live] = useFleetSearch<(K8sResourceCommon & { data: Record<string, string> })[]>(
+    {
+      filters: [{ property: 'kind', values: ['ConfigMap'] }],
+      orderBy: 'name',
+      limit: 10,
+    },
+    true
+  )
+
   return (
     <>
       <PageSection
@@ -148,6 +166,12 @@ export default function WelcomePage() {
           {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img src={HeaderGraphic} style={{ height: '180px', paddingRight: 32 }} />
         </div>
+      </PageSection>
+      <PageSection hasBodyWrapper={false} variant="secondary">
+        <b>Polled</b>
+        <pre>{cm_polled?.map((cm) => `${cm.metadata?.name}/${cm.cluster}\n`)}</pre>
+        <b>Watch</b>
+        <pre>{cm_live?.map((cm) => `${cm.metadata?.name}/${cm.cluster}\n`)}</pre>
       </PageSection>
       <PageSection hasBodyWrapper={false} variant="secondary">
         <AcmDynamicGrid minSize={600}>
