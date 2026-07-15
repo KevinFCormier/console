@@ -147,6 +147,7 @@ export function useFleetSearchPoll<T extends K8sResourceCommon | K8sResourceComm
 
     return {
       filters,
+      orderBy: 'name',
       limit: limit ?? -1,
     }
   }, [cluster, group, version, kind, namespaced, namespace, name, advancedSearchFilters, limit])
