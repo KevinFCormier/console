@@ -65,6 +65,8 @@ const retireFleetWatchSocket = (socket?: WebSocket) => {
   socket.close()
 }
 
+let badCount = 5
+
 const openFleetWatchSocket = (
   requestPath: string,
   resource: FleetWatchK8sResource,
@@ -87,7 +89,8 @@ const openFleetWatchSocket = (
         cluster,
         fieldSelector: name ? `metadata.name=${name}` : undefined,
         labelSelector: selector || undefined,
-        resourceVersion,
+        //resourceVersion,
+        resourceVersion: badCount-- > 0 ? '23234' : resourceVersion,
         allowWatchBookmarks: true,
       },
       basePath
