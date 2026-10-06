@@ -159,7 +159,6 @@ export interface Settings {
   ansibleIntegration?: 'enabled' | 'disabled'
   singleNodeOpenshift?: 'enabled' | 'disabled'
   awsPrivateWizardStep?: 'enabled' | 'disabled'
-  rosaHcpWizard?: 'enabled' | 'disabled'
 
   globalSearchFeatureFlag?: 'enabled' | 'disabled'
 

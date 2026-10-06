@@ -1,6 +1,6 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
-import React, { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import {
   Button,
   Card,
@@ -24,17 +24,12 @@ import {
   Title,
 } from '@patternfly/react-core'
 
-import { Secret } from '~/resources'
-
 import { AcmExpandableSection, AcmPage, AcmPageHeader } from '../../../../../../../ui-components'
 import { Trans, useTranslation } from '../../../../../../../lib/acm-i18next'
 import { NavigationPath } from '../../../../../../../NavigationPath'
 import { DOC_LINKS } from '../../../../../../../lib/doc-util'
-import { RosaHCPModal } from '../RosaHCPModal/RosaHCPModal'
-
 import { StepDownloadROSAClI } from './StepDownloadROSACLI'
 import { WithTerraFormCard } from './WithTerraformCard'
-import { WithWizardCard } from './WithWizardCard'
 import { WithCLICard } from './WithCLICard'
 import { StepCreateAWSAccountRoles } from './StepCreateAwsAccountRoles'
 import { StepCreateNetwork } from './StepCreateNetwork'
@@ -59,14 +54,6 @@ export const PrerequisitesPage = () => {
     ]
     return newBreadcrumbs
   }, [t])
-
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [selectedSecret, setSelectedSecret] = React.useState<Secret[] | undefined>(undefined)
-
-  const close = () => {
-    setSelectedSecret(undefined)
-    setModalIsOpen(false)
-  }
 
   return (
     <AcmPage
@@ -264,13 +251,10 @@ export const PrerequisitesPage = () => {
               </CardHeader>
               <CardBody>
                 <Grid hasGutter>
-                  <GridItem span={4}>
+                  <GridItem span={6}>
                     <WithCLICard />
                   </GridItem>
-                  <GridItem span={4}>
-                    <WithWizardCard setModalIsOpen={setModalIsOpen} />
-                  </GridItem>
-                  <GridItem span={4}>
+                  <GridItem span={6}>
                     <WithTerraFormCard />
                   </GridItem>
                 </Grid>
@@ -280,12 +264,6 @@ export const PrerequisitesPage = () => {
         </Stack>
       </PageSection>
 
-      <RosaHCPModal
-        isModalOpen={modalIsOpen}
-        close={close}
-        selectedSecret={selectedSecret}
-        setSelectedSecret={setSelectedSecret}
-      />
     </AcmPage>
   )
 }
