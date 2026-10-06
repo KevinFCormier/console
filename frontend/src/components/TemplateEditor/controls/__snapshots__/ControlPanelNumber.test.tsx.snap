@@ -8,7 +8,7 @@ exports[`ControlPanelNumber component renders as expected 1`] = `
     <div>
       <div
         class="pf-v6-c-form__group"
-        data-ouia-component-id="OUIA-Generated-FormGroup-:r0:"
+        data-ouia-component-id="OUIA-Generated-FormGroup-_r_0_"
         data-ouia-component-type="PF6/FormGroup"
         data-ouia-safe="true"
         id="controlId-label"
@@ -36,7 +36,7 @@ exports[`ControlPanelNumber component renders as expected 1`] = `
               <button
                 aria-label="More info"
                 class="pf-v6-c-button pf-m-plain pf-v6-c-form__group-label-help"
-                data-ouia-component-id="OUIA-Generated-Button-plain-:r4:"
+                data-ouia-component-id="OUIA-Generated-Button-plain-_r_4_"
                 data-ouia-component-type="PF6/Button"
                 data-ouia-safe="true"
                 id="controlId-label-help-button"
@@ -78,7 +78,7 @@ exports[`ControlPanelNumber component renders as expected 1`] = `
                 <button
                   aria-label="Minus"
                   class="pf-v6-c-button pf-m-control"
-                  data-ouia-component-id="OUIA-Generated-Button-control-:r5:"
+                  data-ouia-component-id="OUIA-Generated-Button-control-_r_5_"
                   data-ouia-component-type="PF6/Button"
                   data-ouia-safe="true"
                   data-testid="down-controlId"
@@ -117,7 +117,7 @@ exports[`ControlPanelNumber component renders as expected 1`] = `
                   <input
                     aria-invalid="false"
                     aria-label="Number input"
-                    data-ouia-component-id="OUIA-Generated-TextInputBase-:r7:"
+                    data-ouia-component-id="OUIA-Generated-TextInputBase-_r_7_"
                     data-ouia-component-type="PF6/TextInput"
                     data-ouia-safe="true"
                     data-testid="number-controlId"
@@ -134,7 +134,7 @@ exports[`ControlPanelNumber component renders as expected 1`] = `
                 <button
                   aria-label="Plus"
                   class="pf-v6-c-button pf-m-control"
-                  data-ouia-component-id="OUIA-Generated-Button-control-:r8:"
+                  data-ouia-component-id="OUIA-Generated-Button-control-_r_8_"
                   data-ouia-component-type="PF6/Button"
                   data-ouia-safe="true"
                   data-testid="up-controlId"
@@ -181,7 +181,7 @@ exports[`ControlPanelNumber component renders as expected 2`] = `
     <div>
       <div
         class="pf-v6-c-form__group"
-        data-ouia-component-id="OUIA-Generated-FormGroup-:r0:"
+        data-ouia-component-id="OUIA-Generated-FormGroup-_r_0_"
         data-ouia-component-type="PF6/FormGroup"
         data-ouia-safe="true"
         id="controlId-label"
@@ -209,7 +209,7 @@ exports[`ControlPanelNumber component renders as expected 2`] = `
               <button
                 aria-label="More info"
                 class="pf-v6-c-button pf-m-plain pf-v6-c-form__group-label-help"
-                data-ouia-component-id="OUIA-Generated-Button-plain-:r4:"
+                data-ouia-component-id="OUIA-Generated-Button-plain-_r_4_"
                 data-ouia-component-type="PF6/Button"
                 data-ouia-safe="true"
                 id="controlId-label-help-button"
@@ -251,7 +251,7 @@ exports[`ControlPanelNumber component renders as expected 2`] = `
                 <button
                   aria-label="Minus"
                   class="pf-v6-c-button pf-m-control"
-                  data-ouia-component-id="OUIA-Generated-Button-control-:r5:"
+                  data-ouia-component-id="OUIA-Generated-Button-control-_r_5_"
                   data-ouia-component-type="PF6/Button"
                   data-ouia-safe="true"
                   data-testid="down-controlId"
@@ -290,7 +290,7 @@ exports[`ControlPanelNumber component renders as expected 2`] = `
                   <input
                     aria-invalid="false"
                     aria-label="Number input"
-                    data-ouia-component-id="OUIA-Generated-TextInputBase-:r7:"
+                    data-ouia-component-id="OUIA-Generated-TextInputBase-_r_7_"
                     data-ouia-component-type="PF6/TextInput"
                     data-ouia-safe="true"
                     data-testid="number-controlId"
@@ -307,7 +307,7 @@ exports[`ControlPanelNumber component renders as expected 2`] = `
                 <button
                   aria-label="Plus"
                   class="pf-v6-c-button pf-m-control"
-                  data-ouia-component-id="OUIA-Generated-Button-control-:r8:"
+                  data-ouia-component-id="OUIA-Generated-Button-control-_r_8_"
                   data-ouia-component-type="PF6/Button"
                   data-ouia-safe="true"
                   data-testid="up-controlId"

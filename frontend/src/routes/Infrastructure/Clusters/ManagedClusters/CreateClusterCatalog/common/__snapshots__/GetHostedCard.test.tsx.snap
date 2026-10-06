@@ -12,13 +12,24 @@ exports[`GetHostedCard Return card data - Hypershift enabled 1`] = `
       "type": "description",
     },
     {
-      "icon": <Icon
-        status="success"
-      >
-        <CheckIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "success",
+        },
+        "type": [Function],
+      },
       "items": [
         {
           "text": "Reduces costs by efficiently reusing an OpenShift cluster to host multiple control planes.",

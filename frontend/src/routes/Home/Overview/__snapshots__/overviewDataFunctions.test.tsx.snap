@@ -152,33 +152,60 @@ exports[`Correctly returns getNodeSummary 1`] = `
   "statusSection": [
     {
       "count": 1,
-      "icon": <Icon
-        status="success"
-      >
-        <CheckCircleIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "success",
+        },
+        "type": [Function],
+      },
       "link": "/multicloud/infrastructure/clusters/managed?nodes=healthy",
       "title": "Ready",
     },
     {
       "count": 0,
-      "icon": <Icon
-        status="danger"
-      >
-        <ExclamationCircleIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "danger",
+        },
+        "type": [Function],
+      },
       "link": undefined,
       "title": "Unhealthy",
     },
     {
       "count": 0,
-      "icon": <UnknownIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "link": undefined,
       "title": "Unknown",
     },
@@ -206,33 +233,60 @@ exports[`Correctly returns getPolicySummary 1`] = `
   "statusSection": [
     {
       "count": 0,
-      "icon": <Icon
-        status="success"
-      >
-        <CheckCircleIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "success",
+        },
+        "type": [Function],
+      },
       "link": "/multicloud/governance/policies?enabled=True&violations=no-violations",
       "title": "With no violations",
     },
     {
       "count": 1,
-      "icon": <Icon
-        status="danger"
-      >
-        <ExclamationCircleIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "danger",
+        },
+        "type": [Function],
+      },
       "link": "/multicloud/governance/policies?enabled=True&violations=violations",
       "title": "With violations",
     },
     {
       "count": 1,
-      "icon": <UnknownIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "link": "/multicloud/governance/policies?enabled=True&violations=no-status",
       "title": "No status",
     },
@@ -250,33 +304,60 @@ exports[`Correctly returns getPolicySummary with filtered clusters 1`] = `
   "statusSection": [
     {
       "count": 0,
-      "icon": <Icon
-        status="success"
-      >
-        <CheckCircleIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "success",
+        },
+        "type": [Function],
+      },
       "link": "/multicloud/governance/policies?enabled=True&violations=no-violations",
       "title": "With no violations",
     },
     {
       "count": 1,
-      "icon": <Icon
-        status="danger"
-      >
-        <ExclamationCircleIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "danger",
+        },
+        "type": [Function],
+      },
       "link": "/multicloud/governance/policies?enabled=True&violations=violations",
       "title": "With violations",
     },
     {
       "count": 0,
-      "icon": <UnknownIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "link": "/multicloud/governance/policies?enabled=True&violations=no-status",
       "title": "No status",
     },
@@ -291,7 +372,14 @@ exports[`Correctly returns parseAlertsMetric 1`] = `
   "alertSeverity": {
     "critical": {
       "alerts": [],
-      "icon": <CriticalRiskIcon />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "key": "critical",
       "label": "Critical",
     },
@@ -314,7 +402,14 @@ exports[`Correctly returns parseAlertsMetric 1`] = `
       "alerts": [
         "AlertmanagerReceiversNotConfigured",
       ],
-      "icon": <ImportantRiskIcon />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "key": "warning",
       "label": "Warning",
     },

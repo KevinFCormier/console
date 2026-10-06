@@ -3,9 +3,13 @@
 exports[`Correctly returns Cluster resource definitions in global search: SearchDefinitions-Cluster-globalhub 1`] = `
 [
   {
-    "cell": <CreateGlobalSearchDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "test-cluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Cluster",
@@ -13,9 +17,10 @@ exports[`Correctly returns Cluster resource definitions in global search: Search
           "managedHub": "global-hub",
           "name": "test-cluster",
           "namespace": "test-cluster",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -96,15 +101,20 @@ exports[`Correctly returns Cluster resource definitions in global search: Search
     "sort": "consoleURL",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -119,7 +129,7 @@ exports[`Correctly returns CreateApplicationTopologyLink - global search 1`] = `
   <div>
     <a
       class="pf-v6-c-button pf-m-link pf-m-inline"
-      data-ouia-component-id="OUIA-Generated-Button-link-:r5:"
+      data-ouia-component-id="OUIA-Generated-Button-link-_r_5_"
       data-ouia-component-type="PF6/Button"
       data-ouia-safe="true"
       href="undefined/multicloud/applications/details/testNamespace/testApp/topology?apiVersion=application.app.k8s.io"
@@ -271,21 +281,30 @@ exports[`Correctly returns CreateDetailsLink - PolicyReport 1`] = `
 exports[`Correctly returns CreateExternalLink from clusterip 1`] = `"http://clusterip"`;
 
 exports[`Correctly returns CreateExternalLink from consoleURL 1`] = `
-<AcmButton
-  component="a"
-  href="http://consoleurl"
-  icon={
-    <ExternalLinkAltIcon
-      noDefaultStyle={false}
-    />
-  }
-  iconPosition="right"
-  isInline={true}
-  target="_blank"
-  variant="link"
->
-  Launch
-</AcmButton>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": "Launch",
+    "component": "a",
+    "href": "http://consoleurl",
+    "icon": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
+    "iconPosition": "right",
+    "isInline": true,
+    "target": "_blank",
+    "variant": "link",
+  },
+  "type": [Function],
+}
 `;
 
 exports[`Correctly returns CreateExternalVMLink 1`] = `
@@ -293,7 +312,7 @@ exports[`Correctly returns CreateExternalVMLink 1`] = `
   <div>
     <a
       class="pf-v6-c-button pf-m-link pf-m-inline"
-      data-ouia-component-id="OUIA-Generated-Button-link-:r6:"
+      data-ouia-component-id="OUIA-Generated-Button-link-_r_6_"
       data-ouia-component-type="PF6/Button"
       data-ouia-safe="true"
       href="https://testCluster.com/k8s/ns/testVM/kubevirt.io~v1~VirtualMachine/testVM"
@@ -343,7 +362,7 @@ exports[`Correctly returns CreateGlobalSearchDetailsLink managed cluster Applica
   <div>
     <a
       class="pf-v6-c-button pf-m-link pf-m-inline"
-      data-ouia-component-id="OUIA-Generated-Button-link-:r2:"
+      data-ouia-component-id="OUIA-Generated-Button-link-_r_2_"
       data-ouia-component-type="PF6/Button"
       data-ouia-safe="true"
       href="undefined/multicloud/applications/details/testClusterNamespace/testClusterName/details?apiVersion=application.app.k8s.io&cluster=leaf-cluster"
@@ -393,7 +412,7 @@ exports[`Correctly returns CreateGlobalSearchDetailsLink managed cluster Cluster
   <div>
     <a
       class="pf-v6-c-button pf-m-link pf-m-inline"
-      data-ouia-component-id="OUIA-Generated-Button-link-:r1:"
+      data-ouia-component-id="OUIA-Generated-Button-link-_r_1_"
       data-ouia-component-type="PF6/Button"
       data-ouia-safe="true"
       href="undefined/multicloud/infrastructure/clusters/details/testClusterName/testClusterName/overview?cluster%3Dundefined%26kind%3DCluster%26namespace%3DtestClusterNamespace%26name%3DtestClusterName"
@@ -456,7 +475,7 @@ exports[`Correctly returns CreateGlobalSearchDetailsLink managed cluster PolicyR
   <div>
     <a
       class="pf-v6-c-button pf-m-link pf-m-inline"
-      data-ouia-component-id="OUIA-Generated-Button-link-:r4:"
+      data-ouia-component-id="OUIA-Generated-Button-link-_r_4_"
       data-ouia-component-type="PF6/Button"
       data-ouia-safe="true"
       href="undefined/multicloud/infrastructure/clusters/details/testClusterNamespace/testClusterNamespace/overview?showClusterIssues%3Dtrue"
@@ -506,7 +525,7 @@ exports[`Correctly returns CreateGlobalSearchDetailsLink managed cluster default
   <div>
     <a
       class="pf-v6-c-button pf-m-link pf-m-inline"
-      data-ouia-component-id="OUIA-Generated-Button-link-:r0:"
+      data-ouia-component-id="OUIA-Generated-Button-link-_r_0_"
       data-ouia-component-type="PF6/Button"
       data-ouia-safe="true"
       href="https://leaf-hub.com/multicloud/search/resources?cluster%3DtestCluster%26kind%3DPod%26namespace%3DtestPodNamespace%26name%3DtestPodName"
@@ -582,7 +601,7 @@ exports[`Correctly returns CreateGlobalSearchDetailsLink managed hub Policy reso
   <div>
     <a
       class="pf-v6-c-button pf-m-link pf-m-inline"
-      data-ouia-component-id="OUIA-Generated-Button-link-:r3:"
+      data-ouia-component-id="OUIA-Generated-Button-link-_r_3_"
       data-ouia-component-type="PF6/Button"
       data-ouia-safe="true"
       href="undefined/multicloud/governance/policies/details/default/hub-a-policy-test"
@@ -736,9 +755,13 @@ exports[`Correctly returns VirtualMachineSnapshot indications 1`] = `
 exports[`Correctly returns all resource definitions: SearchDefinitions-application 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -746,9 +769,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-applicati
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -765,9 +789,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-applicati
     "sort": "namespace",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -775,9 +806,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-applicati
     "sort": "created",
   },
   {
-    "cell": <CreateApplicationTopologyLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -785,25 +820,31 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-applicati
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-      t={[Function]}
-    />,
+        },
+        "t": [Function],
+      },
+      "type": [Function],
+    },
     "header": "Topology",
     "id": "application-topology",
     "isFirstVisitChecked": true,
     "order": 4,
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -816,9 +857,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-applicati
 exports[`Correctly returns all resource definitions: SearchDefinitions-channel 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -826,9 +871,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-channel 1
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -845,9 +891,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-channel 1
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -872,9 +928,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-channel 1
     "sort": "pathname",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -882,15 +945,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-channel 1
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -903,9 +971,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-channel 1
 exports[`Correctly returns all resource definitions: SearchDefinitions-cluster 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -913,9 +985,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cluster 1
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -988,15 +1061,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cluster 1
     "sort": "consoleURL",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1009,9 +1087,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cluster 1
 exports[`Correctly returns all resource definitions: SearchDefinitions-clusteroperator 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1019,9 +1101,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterop
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1038,9 +1121,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterop
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1081,9 +1174,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterop
     "sort": "degraded",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1091,15 +1191,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterop
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1112,9 +1217,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterop
 exports[`Correctly returns all resource definitions: SearchDefinitions-clusterserviceversion 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1122,9 +1231,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterse
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1141,9 +1251,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterse
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1176,9 +1296,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterse
     "sort": "display",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1186,15 +1313,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterse
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1207,9 +1339,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-clusterse
 exports[`Correctly returns all resource definitions: SearchDefinitions-cronjob 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1217,9 +1353,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cronjob 1
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1236,9 +1373,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cronjob 1
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1271,7 +1418,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cronjob 1
     "sort": "active",
   },
   {
-    "cell": <AcmTimestamp />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": undefined,
+      },
+      "type": [Function],
+    },
     "header": "Last schedule",
     "id": "cronjob-lastSchedule",
     "isFirstVisitChecked": true,
@@ -1279,9 +1435,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cronjob 1
     "sort": "lastSchedule",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1289,15 +1452,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cronjob 1
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1310,9 +1478,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-cronjob 1
 exports[`Correctly returns all resource definitions: SearchDefinitions-daemonset 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1320,9 +1492,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-daemonset
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1339,9 +1512,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-daemonset
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1390,9 +1573,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-daemonset
     "sort": "available",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1400,15 +1590,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-daemonset
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1421,9 +1616,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-daemonset
 exports[`Correctly returns all resource definitions: SearchDefinitions-deployable 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1431,9 +1630,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deployabl
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1466,9 +1666,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deployabl
     "sort": "dependencies",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1476,15 +1683,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deployabl
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1497,9 +1709,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deployabl
 exports[`Correctly returns all resource definitions: SearchDefinitions-deployment 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1507,9 +1723,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deploymen
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1526,9 +1743,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deploymen
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1569,9 +1796,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deploymen
     "sort": "available",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1579,15 +1813,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deploymen
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1600,9 +1839,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-deploymen
 exports[`Correctly returns all resource definitions: SearchDefinitions-genericresource 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1610,9 +1853,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-genericre
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1629,9 +1873,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-genericre
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1640,9 +1894,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-genericre
     "sort": "cluster",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1650,15 +1911,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-genericre
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1671,9 +1937,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-genericre
 exports[`Correctly returns all resource definitions: SearchDefinitions-helmrelease 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1681,9 +1951,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-helmrelea
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1700,9 +1971,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-helmrelea
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1743,9 +2024,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-helmrelea
     "sort": "branch",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1753,15 +2041,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-helmrelea
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1774,9 +2067,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-helmrelea
 exports[`Correctly returns all resource definitions: SearchDefinitions-job 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1784,9 +2081,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-job 1`] =
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1803,9 +2101,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-job 1`] =
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1838,9 +2146,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-job 1`] =
     "sort": "successful",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1848,15 +2163,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-job 1`] =
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1869,9 +2189,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-job 1`] =
 exports[`Correctly returns all resource definitions: SearchDefinitions-namespace 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1879,9 +2203,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-namespace
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1890,9 +2215,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-namespace
     "sort": "name",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -1909,9 +2244,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-namespace
     "sort": "status",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -1919,15 +2261,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-namespace
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -1940,9 +2287,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-namespace
 exports[`Correctly returns all resource definitions: SearchDefinitions-node 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -1950,9 +2301,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-node 1`] 
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -1961,9 +2313,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-node 1`] 
     "sort": "name",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2012,9 +2374,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-node 1`] 
     "sort": "cpu",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2022,15 +2391,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-node 1`] 
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2043,9 +2417,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-node 1`] 
 exports[`Correctly returns all resource definitions: SearchDefinitions-persistentvolume 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2053,9 +2431,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2064,9 +2443,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
     "sort": "name",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2131,9 +2520,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
     "sort": "path",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2141,15 +2537,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2162,9 +2563,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
 exports[`Correctly returns all resource definitions: SearchDefinitions-persistentvolumeclaim 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2172,9 +2577,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2191,9 +2597,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2234,9 +2650,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
     "sort": "accessMode",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2244,15 +2667,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2265,9 +2693,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-persisten
 exports[`Correctly returns all resource definitions: SearchDefinitions-placementbinding 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2275,9 +2707,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2310,9 +2743,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
     "sort": "placementpolicy",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2320,15 +2760,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2341,9 +2786,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
 exports[`Correctly returns all resource definitions: SearchDefinitions-placementpolicy 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2351,9 +2800,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2386,9 +2836,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
     "sort": "decisions",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2396,15 +2853,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2417,9 +2879,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-placement
 exports[`Correctly returns all resource definitions: SearchDefinitions-pod 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2427,9 +2893,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-pod 1`] =
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2446,9 +2913,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-pod 1`] =
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2489,9 +2966,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-pod 1`] =
     "sort": "podIP",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2499,15 +2983,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-pod 1`] =
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2520,9 +3009,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-pod 1`] =
 exports[`Correctly returns all resource definitions: SearchDefinitions-policy 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2530,9 +3023,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-policy 1`
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2549,9 +3043,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-policy 1`
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2584,9 +3088,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-policy 1`
     "sort": "remediationAction",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2594,15 +3105,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-policy 1`
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2615,9 +3131,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-policy 1`
 exports[`Correctly returns all resource definitions: SearchDefinitions-policyreport 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2625,9 +3145,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-policyrep
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2697,9 +3218,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-policyrep
 exports[`Correctly returns all resource definitions: SearchDefinitions-release 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2707,9 +3232,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-release 1
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2726,9 +3252,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-release 1
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2761,7 +3297,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-release 1
     "sort": "chartVersion",
   },
   {
-    "cell": <AcmTimestamp />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": undefined,
+      },
+      "type": [Function],
+    },
     "header": "Updated",
     "id": "release-updated",
     "isFirstVisitChecked": true,
@@ -2774,9 +3319,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-release 1
 exports[`Correctly returns all resource definitions: SearchDefinitions-replicaset 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2784,9 +3333,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-replicase
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2803,9 +3353,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-replicase
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2830,9 +3390,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-replicase
     "sort": "current",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2840,15 +3407,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-replicase
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2861,9 +3433,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-replicase
 exports[`Correctly returns all resource definitions: SearchDefinitions-secret 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2871,9 +3447,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-secret 1`
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2890,9 +3467,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-secret 1`
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -2909,9 +3496,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-secret 1`
     "sort": "type",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -2919,15 +3513,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-secret 1`
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -2940,9 +3539,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-secret 1`
 exports[`Correctly returns all resource definitions: SearchDefinitions-service 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -2950,9 +3553,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-service 1
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -2969,9 +3573,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-service 1
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3004,9 +3618,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-service 1
     "sort": "port",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -3014,15 +3635,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-service 1
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -3035,9 +3661,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-service 1
 exports[`Correctly returns all resource definitions: SearchDefinitions-statefulset 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3045,9 +3675,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-statefuls
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -3064,9 +3695,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-statefuls
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3091,9 +3732,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-statefuls
     "sort": "current",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -3101,15 +3749,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-statefuls
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -3122,9 +3775,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-statefuls
 exports[`Correctly returns all resource definitions: SearchDefinitions-subscription.apps.open-cluster-management.io 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3132,9 +3789,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -3151,9 +3809,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3194,9 +3862,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
     "sort": "timeWindow",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -3204,15 +3879,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -3225,9 +3905,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
 exports[`Correctly returns all resource definitions: SearchDefinitions-subscription.operators.coreos.com 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3235,9 +3919,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -3254,9 +3939,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3289,9 +3984,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
     "sort": "Channel",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -3299,15 +4001,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -3320,9 +4027,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-subscript
 exports[`Correctly returns all resource definitions: SearchDefinitions-virtualmachine 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3330,9 +4041,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -3349,9 +4061,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3376,9 +4098,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "ready",
   },
   {
-    "cell": <VMLaunchLinks
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3386,19 +4112,27 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-      t={[Function]}
-    />,
+        },
+        "t": [Function],
+      },
+      "type": [Function],
+    },
     "header": "External links",
     "id": "virtualmachine-launch-links",
     "isFirstVisitChecked": true,
     "order": 6,
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -3406,15 +4140,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -3427,9 +4166,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
 exports[`Correctly returns all resource definitions: SearchDefinitions-virtualmachineinstance 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3437,9 +4180,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -3456,9 +4200,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3483,9 +4237,16 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "ipaddress",
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -3493,15 +4254,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "created",
   },
   {
-    "cell": <AcmLabels
-      collapse={[]}
-      labels={
-        [
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "collapse": [],
+        "labels": [
           "testLabel=label",
           "testLabel1=label1",
-        ]
-      }
-    />,
+        ],
+      },
+      "type": [Function],
+    },
     "header": "Labels",
     "id": "label",
     "isFirstVisitChecked": true,
@@ -3514,9 +4280,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
 exports[`Correctly returns all resource definitions: SearchDefinitions-virtualmachinesnapshot 1`] = `
 [
   {
-    "cell": <CreateDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3524,9 +4294,10 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -3543,9 +4314,19 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "namespace",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          undefined,
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3562,9 +4343,13 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
     "sort": "_conditionReadyReason",
   },
   {
-    "cell": <VMSnapshotIndications
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "cluster": "testCluster",
           "created": "2021-01-01T00:00:00Z",
           "kind": "Pod",
@@ -3572,18 +4357,26 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
           "name": "testName",
           "namespace": "testNamespace",
           "selfLink": "/apigroup/cluster/name",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Indications",
     "id": "virtualmachinesnapshot-indications",
     "isFirstVisitChecked": true,
     "order": 5,
   },
   {
-    "cell": <AcmTimestamp
-      timestamp="2021-01-01T00:00:00Z"
-    />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": "2021-01-01T00:00:00Z",
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
@@ -3594,15 +4387,20 @@ exports[`Correctly returns all resource definitions: SearchDefinitions-virtualma
 `;
 
 exports[`Correctly returns category components 1`] = `
-<AcmLabels
-  collapse={[]}
-  labels={
-    [
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "collapse": [],
+    "labels": [
       "testcategory=category1",
       "testcategory=category2",
-    ]
-  }
-/>
+    ],
+  },
+  "type": [Function],
+}
 `;
 
 exports[`Correctly returns empty CreateApplicationTopologyLink 1`] = `
@@ -3636,52 +4434,65 @@ exports[`Correctly returns empty VirtualMachineSnapshot indications 1`] = `
 exports[`Correctly returns empty labels 1`] = `"-"`;
 
 exports[`Correctly returns label components 1`] = `
-<AcmLabels
-  collapse={[]}
-  labels={
-    [
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "collapse": [],
+    "labels": [
       "testlabel=label1",
       "testlabel=label2",
-    ]
-  }
-/>
+    ],
+  },
+  "type": [Function],
+}
 `;
 
 exports[`Correctly returns policyreport policies 1`] = `
-<AcmLabels
-  collapse={
-    [
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "collapse": [
       "MASTER_DEFINED_AS_MACHINESETS",
       "NODES_MINIMUM_REQUIREMENTS_NOT_MET",
       "UNSUPPORT_SDN_PLUGIN",
-    ]
-  }
-  labels={
-    [
+    ],
+    "labels": [
       "AUTH_OPERATOR_PROXY_ERROR",
       "CONTAINER_ROOT_PARTITION_SIZE",
       "MASTER_DEFINED_AS_MACHINESETS",
       "NODES_MINIMUM_REQUIREMENTS_NOT_MET",
       "UNSUPPORT_SDN_PLUGIN",
-    ]
-  }
-/>
+    ],
+  },
+  "type": [Function],
+}
 `;
 
 exports[`Correctly returns resource with managedHub column: SearchDefinitions-global-node 1`] = `
 [
   {
-    "cell": <CreateGlobalSearchDetailsLink
-      item={
-        {
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "item": {
           "apiversion": "v1",
           "cluster": "testCluster",
           "kind": "Node",
           "managedHub": "testManagedHub",
           "name": "node.1",
-        }
-      }
-    />,
+        },
+      },
+      "type": [Function],
+    },
     "header": "Name",
     "id": "name",
     "isDefault": true,
@@ -3690,16 +4501,38 @@ exports[`Correctly returns resource with managedHub column: SearchDefinitions-gl
     "sort": "name",
   },
   {
-    "cell": <React.Fragment>
-      testCluster
-      <Content>
-        <Content
-          component="small"
-        >
-          testManagedHub
-        </Content>
-      </Content>
-    </React.Fragment>,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
+          "testCluster",
+          {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {
+              "children": {
+                "$$typeof": Symbol(react.transitional.element),
+                "_owner": null,
+                "_store": {},
+                "key": null,
+                "props": {
+                  "children": "testManagedHub",
+                  "component": "small",
+                },
+                "type": [Function],
+              },
+            },
+            "type": [Function],
+          },
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
     "header": "Cluster",
     "id": "cluster",
     "isDefault": true,
@@ -3748,7 +4581,16 @@ exports[`Correctly returns resource with managedHub column: SearchDefinitions-gl
     "sort": "cpu",
   },
   {
-    "cell": <AcmTimestamp />,
+    "cell": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "timestamp": undefined,
+      },
+      "type": [Function],
+    },
     "header": "Created",
     "id": "created",
     "isFirstVisitChecked": true,
