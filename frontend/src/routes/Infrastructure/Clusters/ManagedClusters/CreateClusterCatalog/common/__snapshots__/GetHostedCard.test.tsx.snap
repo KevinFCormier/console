@@ -2,17 +2,30 @@
 
 exports[`GetHostedCard Return card data - Hypershift enabled 1`] = `
 {
-  "alertContent": <a
-    href="https://docs.redhat.com/en/documentation/openshift_container_platform/5.1/html-single/hosted_control_planes/hosted-control-planes-overview#hcp-enable-manual_hcp-enable-disable"
-    rel="noopener noreferrer"
-    target="_blank"
-  >
-    View documentation
-     
-    <ExternalLinkAltIcon
-      noDefaultStyle={false}
-    />
-  </a>,
+  "alertContent": {
+    "$$typeof": Symbol(react.transitional.element),
+    "_owner": null,
+    "_store": {},
+    "key": null,
+    "props": {
+      "children": [
+        "View documentation",
+        " ",
+        {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
+      ],
+      "href": "https://docs.redhat.com/en/documentation/openshift_container_platform/5.1/html-single/hosted_control_planes/hosted-control-planes-overview#hcp-enable-manual_hcp-enable-disable",
+      "rel": "noopener noreferrer",
+      "target": "_blank",
+    },
+    "type": "a",
+  },
   "alertTitle": undefined,
   "alertVariant": "info",
   "id": "hosted",
@@ -22,13 +35,24 @@ exports[`GetHostedCard Return card data - Hypershift enabled 1`] = `
       "type": "description",
     },
     {
-      "icon": <Icon
-        status="success"
-      >
-        <CheckIcon
-          noDefaultStyle={false}
-        />
-      </Icon>,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {},
+            "type": [Function],
+          },
+          "status": "success",
+        },
+        "type": [Function],
+      },
       "items": [
         {
           "text": "Reduces costs by efficiently reusing an OpenShift cluster to host multiple control planes.",

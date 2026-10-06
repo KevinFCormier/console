@@ -26,9 +26,16 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "id": "connection",
     "name": "Infrastructure provider credential",
     "placeholder": "Select a credential",
@@ -44,7 +51,14 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
     "additionalProps": {
       "promptSshPublicKey": false,
     },
-    "component": <DetailsForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "encodeValues": [
       "pullSecret",
     ],
@@ -63,10 +77,17 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
     "type": "title",
   },
   {
-    "component": <AutomationProviderHint
-      className="creation-view-controls-hint"
-      component="hint"
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "className": "creation-view-controls-hint",
+        "component": "hint",
+      },
+      "type": [Function],
+    },
     "id": "automationProviderHint",
     "type": "custom",
   },
@@ -76,9 +97,14 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
     "onSelect": [Function],
     "placeholder": "Select an automation template",
     "prompts": {
-      "icon": <ExternalLinkAltIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "id": "add-automation-template",
       "positionBottomRight": true,
       "prompt": "Add automation template",
@@ -92,12 +118,26 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
     },
   },
   {
-    "component": <TemplateLinkOutControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorLinkOut",
     "type": "custom",
   },
   {
-    "component": <TemplateSummaryControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorSummary",
     "type": "custom",
   },
@@ -145,7 +185,14 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
     "type": "step",
   },
   {
-    "component": <HostsForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "hypershift-hosts",
     "providerId": "hypershift",
     "type": "custom",
@@ -157,7 +204,14 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
     "type": "step",
   },
   {
-    "component": <NetworkForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "hypershift-network",
     "providerId": "hypershift",
     "type": "custom",
@@ -168,7 +222,14 @@ exports[`Cluster creation control data for Hypershift generates correctly 1`] = 
     "type": "hidden",
   },
   {
-    "component": <Warning />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "warning",
     "type": "custom",
   },
@@ -201,9 +262,16 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "id": "connection",
     "name": "Infrastructure provider credential",
     "placeholder": "Select a credential",
@@ -219,7 +287,14 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
     "additionalProps": {
       "promptSshPublicKey": false,
     },
-    "component": <DetailsForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "encodeValues": [
       "pullSecret",
     ],
@@ -238,10 +313,17 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
     "type": "title",
   },
   {
-    "component": <AutomationProviderHint
-      className="creation-view-controls-hint"
-      component="hint"
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "className": "creation-view-controls-hint",
+        "component": "hint",
+      },
+      "type": [Function],
+    },
     "id": "automationProviderHint",
     "type": "custom",
   },
@@ -251,9 +333,14 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
     "onSelect": [Function],
     "placeholder": "Select an automation template",
     "prompts": {
-      "icon": <ExternalLinkAltIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "id": "add-automation-template",
       "positionBottomRight": true,
       "prompt": "Add automation template",
@@ -267,12 +354,26 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
     },
   },
   {
-    "component": <TemplateLinkOutControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorLinkOut",
     "type": "custom",
   },
   {
-    "component": <TemplateSummaryControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorSummary",
     "type": "custom",
   },
@@ -320,7 +421,14 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
     "type": "step",
   },
   {
-    "component": <HostsForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "hypershift-hosts",
     "providerId": "hypershift",
     "type": "custom",
@@ -332,7 +440,14 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
     "type": "step",
   },
   {
-    "component": <NetworkForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "hypershift-network",
     "providerId": "hypershift",
     "type": "custom",
@@ -343,7 +458,14 @@ exports[`Cluster creation control data for Hypershift generates correctly for MC
     "type": "hidden",
   },
   {
-    "component": <Warning />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "warning",
     "type": "custom",
   },

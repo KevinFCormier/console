@@ -45,19 +45,33 @@ exports[`Cluster creation control data for KubeVirt generates correctly 1`] = `
     "type": "reviewinfo",
   },
   {
-    "component": <OperatorAlert
-      localCluster={{}}
-      t={[Function]}
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "localCluster": {},
+        "t": [Function],
+      },
+      "type": [Function],
+    },
     "hidden": false,
     "id": "kubevirt-operator-alert",
     "type": "custom",
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "hasReplacements": true,
     "id": "connection",
     "name": "Infrastructure provider credential",
@@ -159,7 +173,14 @@ exports[`Cluster creation control data for KubeVirt generates correctly 1`] = `
       "controllerAvailabilityPolicy": "HighlyAvailable",
       "infrastructureAvailabilityPolicy": "HighlyAvailable",
     },
-    "component": <AvailabilityOptionsForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "availabilityOptions",
     "summary": [Function],
     "type": "custom",
@@ -455,10 +476,17 @@ exports[`Cluster creation control data for KubeVirt generates correctly 1`] = `
     "type": "title",
   },
   {
-    "component": <AutomationProviderHint
-      className="creation-view-controls-hint"
-      component="hint"
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "className": "creation-view-controls-hint",
+        "component": "hint",
+      },
+      "type": [Function],
+    },
     "id": "automationProviderHint",
     "type": "custom",
   },
@@ -468,9 +496,14 @@ exports[`Cluster creation control data for KubeVirt generates correctly 1`] = `
     "onSelect": [Function],
     "placeholder": "Select an automation template",
     "prompts": {
-      "icon": <ExternalLinkAltIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "id": "add-automation-template",
       "positionBottomRight": true,
       "prompt": "Add automation template",
@@ -484,12 +517,26 @@ exports[`Cluster creation control data for KubeVirt generates correctly 1`] = `
     },
   },
   {
-    "component": <TemplateLinkOutControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorLinkOut",
     "type": "custom",
   },
   {
-    "component": <TemplateSummaryControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorSummary",
     "type": "custom",
   },
@@ -536,7 +583,14 @@ exports[`Cluster creation control data for KubeVirt generates correctly 1`] = `
     "type": "hidden",
   },
   {
-    "component": <Warning />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "warning",
     "type": "custom",
   },
@@ -563,9 +617,13 @@ exports[`Cluster creation control data for KubeVirt generates correctly for MCE 
     "type": "reviewinfo",
   },
   {
-    "component": <OperatorAlert
-      localCluster={
-        {
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "localCluster": {
           "clusterSet": "default",
           "consoleURL": "https://console-openshift-console.apps.cs-aws-413-j9kqv.dev02.red-chesterfield.com",
           "creationTimestamp": "2024-01-29T04:31:03Z",
@@ -599,19 +657,27 @@ exports[`Cluster creation control data for KubeVirt generates correctly for MCE 
           "owner": {},
           "provider": "aws",
           "status": "ready",
-        }
-      }
-      t={[Function]}
-    />,
+        },
+        "t": [Function],
+      },
+      "type": [Function],
+    },
     "hidden": false,
     "id": "kubevirt-operator-alert",
     "type": "custom",
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "hasReplacements": true,
     "id": "connection",
     "name": "Infrastructure provider credential",
@@ -713,7 +779,14 @@ exports[`Cluster creation control data for KubeVirt generates correctly for MCE 
       "controllerAvailabilityPolicy": "HighlyAvailable",
       "infrastructureAvailabilityPolicy": "HighlyAvailable",
     },
-    "component": <AvailabilityOptionsForm />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "availabilityOptions",
     "summary": [Function],
     "type": "custom",
@@ -1009,10 +1082,17 @@ exports[`Cluster creation control data for KubeVirt generates correctly for MCE 
     "type": "title",
   },
   {
-    "component": <AutomationProviderHint
-      className="creation-view-controls-hint"
-      component="hint"
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "className": "creation-view-controls-hint",
+        "component": "hint",
+      },
+      "type": [Function],
+    },
     "id": "automationProviderHint",
     "type": "custom",
   },
@@ -1022,9 +1102,14 @@ exports[`Cluster creation control data for KubeVirt generates correctly for MCE 
     "onSelect": [Function],
     "placeholder": "Select an automation template",
     "prompts": {
-      "icon": <ExternalLinkAltIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "id": "add-automation-template",
       "positionBottomRight": true,
       "prompt": "Add automation template",
@@ -1038,12 +1123,26 @@ exports[`Cluster creation control data for KubeVirt generates correctly for MCE 
     },
   },
   {
-    "component": <TemplateLinkOutControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorLinkOut",
     "type": "custom",
   },
   {
-    "component": <TemplateSummaryControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorSummary",
     "type": "custom",
   },
@@ -1090,7 +1189,14 @@ exports[`Cluster creation control data for KubeVirt generates correctly for MCE 
     "type": "hidden",
   },
   {
-    "component": <Warning />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "warning",
     "type": "custom",
   },

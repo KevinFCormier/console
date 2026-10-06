@@ -15,9 +15,16 @@ exports[`Cluster creation control data for GCP generates correctly 1`] = `
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "id": "connection",
     "name": "Infrastructure provider credential",
     "onSelect": [Function],
@@ -113,7 +120,14 @@ exports[`Cluster creation control data for GCP generates correctly 1`] = `
   {
     "active": false,
     "hidden": [Function],
-    "icon": <DevPreviewLabel />,
+    "icon": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "singleNode",
     "name": "Single Node OpenShift",
     "onSelect": [Function],
@@ -1016,10 +1030,17 @@ exports[`Cluster creation control data for GCP generates correctly 1`] = `
     "type": "title",
   },
   {
-    "component": <AutomationProviderHint
-      className="creation-view-controls-hint"
-      component="hint"
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "className": "creation-view-controls-hint",
+        "component": "hint",
+      },
+      "type": [Function],
+    },
     "id": "automationProviderHint",
     "type": "custom",
   },
@@ -1029,9 +1050,14 @@ exports[`Cluster creation control data for GCP generates correctly 1`] = `
     "onSelect": [Function],
     "placeholder": "Select an automation template",
     "prompts": {
-      "icon": <ExternalLinkAltIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "id": "add-automation-template",
       "positionBottomRight": true,
       "prompt": "Add automation template",
@@ -1045,12 +1071,26 @@ exports[`Cluster creation control data for GCP generates correctly 1`] = `
     },
   },
   {
-    "component": <TemplateLinkOutControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorLinkOut",
     "type": "custom",
   },
   {
-    "component": <TemplateSummaryControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorSummary",
     "type": "custom",
   },
@@ -1109,9 +1149,16 @@ exports[`Cluster creation control data for GCP generates correctly for MCE 1`] =
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "id": "connection",
     "name": "Infrastructure provider credential",
     "onSelect": [Function],
@@ -1207,7 +1254,14 @@ exports[`Cluster creation control data for GCP generates correctly for MCE 1`] =
   {
     "active": false,
     "hidden": [Function],
-    "icon": <DevPreviewLabel />,
+    "icon": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "singleNode",
     "name": "Single Node OpenShift",
     "onSelect": [Function],
@@ -2110,10 +2164,17 @@ exports[`Cluster creation control data for GCP generates correctly for MCE 1`] =
     "type": "title",
   },
   {
-    "component": <AutomationProviderHint
-      className="creation-view-controls-hint"
-      component="hint"
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "className": "creation-view-controls-hint",
+        "component": "hint",
+      },
+      "type": [Function],
+    },
     "id": "automationProviderHint",
     "type": "custom",
   },
@@ -2123,9 +2184,14 @@ exports[`Cluster creation control data for GCP generates correctly for MCE 1`] =
     "onSelect": [Function],
     "placeholder": "Select an automation template",
     "prompts": {
-      "icon": <ExternalLinkAltIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "id": "add-automation-template",
       "positionBottomRight": true,
       "prompt": "Add automation template",
@@ -2139,12 +2205,26 @@ exports[`Cluster creation control data for GCP generates correctly for MCE 1`] =
     },
   },
   {
-    "component": <TemplateLinkOutControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorLinkOut",
     "type": "custom",
   },
   {
-    "component": <TemplateSummaryControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorSummary",
     "type": "custom",
   },
@@ -2203,9 +2283,16 @@ exports[`Cluster creation control data for GCP generates correctly for cluster p
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "id": "connection",
     "name": "Infrastructure provider credential",
     "onSelect": [Function],
@@ -2333,7 +2420,14 @@ exports[`Cluster creation control data for GCP generates correctly for cluster p
   {
     "active": false,
     "hidden": [Function],
-    "icon": <DevPreviewLabel />,
+    "icon": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "singleNode",
     "name": "Single Node OpenShift",
     "onSelect": [Function],
@@ -3231,9 +3325,16 @@ exports[`Cluster creation control data for GCP generates correctly with SNO enab
   },
   {
     "available": [],
-    "footer": <CreateCredentialModal
-      handleModalToggle={[MockFunction]}
-    />,
+    "footer": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "handleModalToggle": [MockFunction],
+      },
+      "type": [Function],
+    },
     "id": "connection",
     "name": "Infrastructure provider credential",
     "onSelect": [Function],
@@ -3329,7 +3430,14 @@ exports[`Cluster creation control data for GCP generates correctly with SNO enab
   {
     "active": false,
     "hidden": [Function],
-    "icon": <DevPreviewLabel />,
+    "icon": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "singleNode",
     "name": "Single Node OpenShift",
     "onSelect": [Function],
@@ -4232,10 +4340,17 @@ exports[`Cluster creation control data for GCP generates correctly with SNO enab
     "type": "title",
   },
   {
-    "component": <AutomationProviderHint
-      className="creation-view-controls-hint"
-      component="hint"
-    />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "className": "creation-view-controls-hint",
+        "component": "hint",
+      },
+      "type": [Function],
+    },
     "id": "automationProviderHint",
     "type": "custom",
   },
@@ -4245,9 +4360,14 @@ exports[`Cluster creation control data for GCP generates correctly with SNO enab
     "onSelect": [Function],
     "placeholder": "Select an automation template",
     "prompts": {
-      "icon": <ExternalLinkAltIcon
-        noDefaultStyle={false}
-      />,
+      "icon": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
       "id": "add-automation-template",
       "positionBottomRight": true,
       "prompt": "Add automation template",
@@ -4261,12 +4381,26 @@ exports[`Cluster creation control data for GCP generates correctly with SNO enab
     },
   },
   {
-    "component": <TemplateLinkOutControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorLinkOut",
     "type": "custom",
   },
   {
-    "component": <TemplateSummaryControl />,
+    "component": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
     "id": "curatorSummary",
     "type": "custom",
   },
